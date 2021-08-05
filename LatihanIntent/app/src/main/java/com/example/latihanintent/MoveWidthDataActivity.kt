@@ -16,7 +16,7 @@ class MoveWidthDataActivity : AppCompatActivity() {
         val tvDataRecieved: TextView = findViewById(R.id.tv_data_recieved)
 
         val name = intent.getStringExtra(EXTRA_NAME)
-        val age = intent.getStringExtra(EXTRA_AGE)
+        val age = intent.getIntExtra(EXTRA_AGE,0)
 
         val text = "Name : $name, Your Age : $age"
         tvDataRecieved.text = text
