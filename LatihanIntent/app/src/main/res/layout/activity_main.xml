@@ -35,5 +35,31 @@
         android:background="@color/purple_500"
         android:text="@string/move_with_object"/>
 
+    <Button
+        android:textColor="@color/white"
+        android:id="@+id/btn_dial_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/purple_500"
+        android:text="@string/dial_number"/>
+
+    <Button
+        android:textColor="@color/white"
+        android:id="@+id/btn_move_for_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/purple_500"
+        android:text="@string/move_with_result"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/result_from_activity"
+        android:textSize="24sp" />
+
 
 </LinearLayout>
