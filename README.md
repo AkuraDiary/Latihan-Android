@@ -1,7 +1,9 @@
 # Latihan-Android
-Repository untuk latihan latihan android saya, yeyyy
+Repository untuk latihan latihan android saya selama belajar di dicoding, yeyyy
 
 # Latihan-latihan
 - Activity (done)
-- Intent Eksplisit (in progress) 
-- Intent Implisit (in progress)
+- Intent Eksplisit (done) 
+- Intent Implisit (done)
+- Intent dengan Parcelable data (done)
+- Intent dengan ResultActivity (done)
