@@ -10,13 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission1BelajarFundamentalAplikasiAndroid">
-
-        <activity android:name=".splashscreen" android:theme="@style/splashscreen" android:noHistory="true">
+        <activity android:name=".DetailUser"/>
+        <activity
+            android:name=".splashscreen"
+            android:noHistory="true"
+            android:theme="@style/splashscreen">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
