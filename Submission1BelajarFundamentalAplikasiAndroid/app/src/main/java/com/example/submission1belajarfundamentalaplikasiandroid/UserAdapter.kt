@@ -1,51 +1,61 @@
 package com.example.submission1belajarfundamentalaplikasiandroid
 
-import android.annotation.SuppressLint
-import android.content.Context
+
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
-import de.hdodenhof.circleimageview.CircleImageView
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.submission1belajarfundamentalaplikasiandroid.DetailUser.Companion.EXTRA_USER_DATA
+//import com.bumptech.glide.request.RequestOptions
+import com.example.submission1belajarfundamentalaplikasiandroid.databinding.UserItemBinding
 
-class UserAdapter(private val context: Context, private val listUser:ArrayList<Person>):BaseAdapter() {
-    @SuppressLint("InflateParams")
-    override fun getView(position: Int, view : View?, viewGroup: ViewGroup):View{
-        var itemView = view
-        if(itemView==null){
-            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            itemView = inflater.inflate(R.layout.user_item, null, true)
+class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
+    private val dataListUser = ArrayList<Person>()
+    fun setData(data: List<Person>){
+        dataListUser.apply {
+            clear()
+            addAll(data)
         }
-        val viewHolder = ViewHolder(itemView as View)
-        val user = getItem(position) as Person
-        //viewHolder.bind(user)
-        return itemView
+        notifyDataSetChanged()
     }
 
-    override fun getItem(position: Int): Any {
-        return listUser[position]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val tampil = UserItemBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        return UserViewHolder(tampil)
     }
 
-    override fun getItemId(i:Int):Long{
-        return i.toLong()
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        holder.bind(dataListUser[position])
     }
 
-    override fun getCount(): Int {
-        return listUser.size
+    override fun getItemCount(): Int {
+        return dataListUser.size
+    }
+    
+    inner class UserViewHolder(private val view: UserItemBinding):RecyclerView.ViewHolder(view.root) {
+
+        fun bind(user:Person){
+            view.apply{
+                txtUsername.text = user.username
+                txtName.text = user.name
+            }
+
+            Glide.with(itemView.context)
+                .load(user.avatar)
+                //.apply(RequestOptions.circleCropTransform())
+                .into(view.imgAvatar)
+
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, DetailUser::class.java)
+                intent.putExtra(EXTRA_USER_DATA, user)
+                itemView.context.startActivity(intent)
+            }
+        }
+
+
+
+
     }
 
-    private inner class ViewHolder(view: View){
-        private val img_avatar: CircleImageView = view.findViewById(R.id.img_avatar)
-        private val Name: TextView = view.findViewById(R.id.txt_name)
-        //private val Location: TextView = view.findViewById(R.id.txt_location)
-        //private val Company: TextView = view.findViewById(R.id.txt_company)
-
-        /*fun bind(user: Person){
-            user.avatar?.let{img_avatar.setImageResource(it)}
-            Name.text = user.name
-            Location.text = user.location
-            Company.text = user.company
-        }*/
-    }
 }

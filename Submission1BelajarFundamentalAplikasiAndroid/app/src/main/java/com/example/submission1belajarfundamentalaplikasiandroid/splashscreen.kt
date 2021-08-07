@@ -8,7 +8,7 @@ class splashscreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splashscreen)
-
+        supportActionBar?.hide()//hiding action bar untuk splashscreen
         val background = object : Thread(){
             override fun run(){
                 try{

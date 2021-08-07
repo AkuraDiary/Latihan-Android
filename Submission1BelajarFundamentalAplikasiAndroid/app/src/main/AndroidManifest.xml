@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission1BelajarFundamentalAplikasiAndroid">
-        <activity android:name=".DetailUser"/>
+
+        <activity android:name=".DetailUser" android:configChanges="orientation|screenSize"/>
+
         <activity
             android:name=".splashscreen"
             android:noHistory="true"
@@ -22,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
