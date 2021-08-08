@@ -8,9 +8,6 @@ import com.example.submission1belajarfundamentalaplikasiandroid.databinding.Acti
 
 
 class DetailUser : AppCompatActivity() {
-    companion object{
-        const val EXTRA_USER_DATA = "extra user data"
-    }
 
     private lateinit var userDetailBind: ActivityDetailUserBinding
 
@@ -45,5 +42,8 @@ class DetailUser : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean{
         onBackPressed()
         return  super.onSupportNavigateUp()
+    }
+    companion object{
+        const val EXTRA_USER_DATA = "extra user data"
     }
 }

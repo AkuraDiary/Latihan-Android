@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val actionbar = supportActionBar
-        actionbar!!.title= "List User"
+        actionbar?.title= "List User"
 
         mainBinding = inflate(layoutInflater)
         setContentView(mainBinding.root)
