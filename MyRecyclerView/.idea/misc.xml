@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/MyRecyclerView/app/src/main/res/layout/item_cardview_hero.xml" value="0.196875" />
+        <entry key="..\:/AndroidProject/MyRecyclerView/app/src/main/res/layout/item_grid_hero.xml" value="0.196875" />
         <entry key="..\:/AndroidProject/MyRecyclerView/app/src/main/res/layout/item_row_hero.xml" value="0.196875" />
         <entry key="..\:/AndroidProject/MyRecyclerView/app/src/main/res/menu/menu_main.xml" value="0.196875" />
       </map>

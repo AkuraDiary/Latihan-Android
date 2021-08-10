@@ -8,6 +8,7 @@
     <string name="with_cardview">with CardView</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>
+    <string name="deskripsi_foto">deskripsi foto</string>
     <string-array name="data_name">
         <item>Ahmad Dahlan</item>
         <item>Ahmad Yani</item>
