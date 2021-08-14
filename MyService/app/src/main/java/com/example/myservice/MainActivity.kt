@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         //Job intent service
         val btnStartJobIntentService = findViewById<Button>(R.id.btn_start_job_intent_service) //variable tombolnya
         btnStartJobIntentService.setOnClickListener{//method jika diklik
-
+            val mStartIntentService = Intent(this, MyJobIntentService::class.java)
+            mStartIntentService.putExtra(MyJobIntentService.EXTRA_DURATION, 5000L)
+            MyJobIntentService.enqueueWork(this, mStartIntentService)
         }
 
         //bound service
