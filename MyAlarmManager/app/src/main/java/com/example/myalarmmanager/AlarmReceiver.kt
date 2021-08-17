@@ -88,7 +88,7 @@ class AlarmReceiver : BroadcastReceiver(){
         }
     }
 
-    private fun showAlarmNotification(context: Context, title: String, message: String, notifId: Int) {
+    private fun  showAlarmNotification(context: Context, title: String, message: String, notifId: Int) {
         val channelId = "Channel_1"
         val channelName = "AlarmManager channel"
 
