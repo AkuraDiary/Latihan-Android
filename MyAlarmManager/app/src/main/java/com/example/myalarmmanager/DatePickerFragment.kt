@@ -2,7 +2,7 @@ package com.example.myalarmmanager
 
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
@@ -31,6 +31,7 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, dayOfMonth: Int) {
         mListener?.onDialogDateSet(tag, year, month, dayOfMonth)
     }
+
     interface DialogDateListener {
         fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int)
     }
