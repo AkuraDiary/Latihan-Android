@@ -1,5 +1,6 @@
 package com.example.myalarmmanager
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -42,13 +43,14 @@ class AlarmReceiver : BroadcastReceiver(){
 
         //siapkan 2 id untuk 2 macam alarm, onetime dan repeating
         private const val ID_ONETIME = 100
-        private const val ID_REPEATING = 101
+        const val ID_REPEATING = 101
 
         private const val DATE_FORMAT = "yyyy-MM-dd"
         private const val TIME_FORMAT = "HH:mm"
     }
 
     // Metode ini digunakan untuk menjalankan alarm one time
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun setOneTimeAlarm(context: Context, type : String, date:String, time:String, message:String){
         // Validasi inputan date dan time terlebih dahulu
         if (isDateInvalid(date, DATE_FORMAT) || isDateInvalid(time, TIME_FORMAT)) return
@@ -140,5 +142,19 @@ class AlarmReceiver : BroadcastReceiver(){
 
         val notification = builder.build()
         notificationManagerCompat.notify(notifId, notification)
+    }
+
+    fun cancelAlarm(context: Context, type: String){
+
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+
+        val requestCode = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+
+        pendingIntent.cancel()
+
+        alarmManager.cancel(pendingIntent)
+        Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show()
     }
 }
