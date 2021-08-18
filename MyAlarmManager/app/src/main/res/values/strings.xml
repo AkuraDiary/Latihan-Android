@@ -10,5 +10,6 @@
     <string name="alarm_time">Waktu Alarm</string>
     <string name="deskripsi_tombol_date_range">tombol date range</string>
     <string name="deskripsi_tombol_access_time">tombol accese time</string>
+    <string name="deskripsi_tombol_repeating_alarm">tombol repeating alarm</string>
 
 </resources>
