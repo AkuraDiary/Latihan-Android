@@ -19,3 +19,6 @@ Repository untuk latihan latihan android saya selama belajar di dicoding, yeyyy
 - View and Views(done)
 - Constraint View(done)
 - Recycle View (list, grid, card) (done)
+
+
+ummm, saya lupa progressnya, nanti aja saya benerin
