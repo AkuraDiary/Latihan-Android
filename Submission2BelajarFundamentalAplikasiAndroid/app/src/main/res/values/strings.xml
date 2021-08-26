@@ -12,5 +12,10 @@
     <string name="pubRepo_placeholder" translatable="false">0</string>
     <string name="follower_placeholder" translatable="false">1</string>
     <string name="following_placeholder" translatable="false">2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deskripsi_img_github">logo github</string>
+    <string name="search_placeholderHint">Search Somebody here</string>
+    <string name="user_not_found">can\'t find user</string>
 
 </resources>

@@ -21,7 +21,7 @@ class SplashscreenActivity : AppCompatActivity() {
         // animasi progress bar
         progressBar.max = 100
         val barAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100)
-        barAnimation.duration = 3000
+        barAnimation.duration = 2500
         // start the progress bar animation
         barAnimation.start()
 
