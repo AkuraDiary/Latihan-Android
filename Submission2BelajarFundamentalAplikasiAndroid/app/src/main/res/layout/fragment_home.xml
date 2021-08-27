@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <include
-        android:id="@+id/err_layout"
+        android:id="@+id/error_layout"
         layout="@layout/empty_layout_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

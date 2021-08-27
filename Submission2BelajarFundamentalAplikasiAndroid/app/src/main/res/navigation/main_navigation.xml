@@ -13,11 +13,9 @@
 
         <action
             android:id="@+id/details_action"
-            app:destination="@id/details_destination"/>
-            <!--app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
+            app:destination="@id/details_destination"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
 
     </fragment>
     <fragment

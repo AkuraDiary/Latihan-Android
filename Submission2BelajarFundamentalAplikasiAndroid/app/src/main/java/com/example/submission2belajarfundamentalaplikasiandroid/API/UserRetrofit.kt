@@ -1,19 +1,19 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.API
 
 import androidx.lifecycle.liveData
-import com.bumptech.glide.load.engine.Resource
 import kotlinx.coroutines.Dispatchers
-import retrofit2.Response.error
-import kotlin.Result.Companion.success
+import com.example.submission2belajarfundamentalaplikasiandroid.others.ResourceStats
 
 object UserRetrofit {
-    /*fun searchUsers(query: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(null))
+    fun searchForUser(query: String) = liveData(Dispatchers.IO) {
+        emit(ResourceStats.onLoading(null))
         try {
-            val userSearch = RetrofitConfig.apiClient.searchUsers(query)
-            emit(Resource.success(userSearch.items))
-        } catch (exception: Exception) {
-            emit(Resource.error(null, exception.message ?: "Error"))
+            val userSearch = RConfig.API_Client.searchForUsers(query)
+            emit(ResourceStats.onSuccess(userSearch.items_res))
+        } catch (exception: Exception){
+            emit(ResourceStats.onError(null, exception.message ?: "Error"))
         }
-    }*/
+    }
+
+
 }

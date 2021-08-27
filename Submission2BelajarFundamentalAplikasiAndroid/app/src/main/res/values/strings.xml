@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name" translatable="false">Github User</string>
+    <string name="text_repos" translatable="false">Repositories</string>
+
 
     <!--Bisa di translate-->
     <string name="lang_settings">Language Settings</string>
+    <string name="txt_folower">Followers</string>
+    <string name="txt_folowing">Following</string>
+    <string name="search_placeholderHint">Search Somebody here</string>
+    <string name="user_not_found">can\'t find user</string>
+    <string name="deskripsi_img_github">logo github</string>
+    <string name="kosong">%1$ Don\'t Have %2$s</string>
+
 
     <!--string untuk placeholder / example-->
     <string name="login_placeholder" translatable="false">Login</string>
@@ -12,10 +21,8 @@
     <string name="pubRepo_placeholder" translatable="false">0</string>
     <string name="follower_placeholder" translatable="false">1</string>
     <string name="following_placeholder" translatable="false">2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="deskripsi_img_github">logo github</string>
-    <string name="search_placeholderHint">Search Somebody here</string>
-    <string name="user_not_found">can\'t find user</string>
+
+
+
 
 </resources>
