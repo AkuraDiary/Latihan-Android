@@ -1,4 +1,4 @@
-package com.example.submission2belajarfundamentalaplikasiandroid.API
+package com.example.submission2belajarfundamentalaplikasiandroid.api
 
 import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 import retrofit2.http.GET

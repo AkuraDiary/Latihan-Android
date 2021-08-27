@@ -1,4 +1,4 @@
-package com.example.submission2belajarfundamentalaplikasiandroid.API
+package com.example.submission2belajarfundamentalaplikasiandroid.api
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 
 object RConfig {
 
-    private const val MY_GITHUB_API_KEY = "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"
+    private const val MY_GITHUB_API_KEY = "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"//replace the github API
     private const val githubUrl = "https://api.github.com"
 
     private val Client by lazy{
@@ -17,8 +17,8 @@ object RConfig {
                 val origin = chain.request()
                 val reqBuilder = origin.newBuilder()
                     . header("Authorization", MY_GITHUB_API_KEY)
-                val client_request = reqBuilder.build()
-                chain.proceed(client_request)
+                val clientRequest = reqBuilder.build()
+                chain.proceed(clientRequest)
             }
             . connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
