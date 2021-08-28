@@ -19,7 +19,6 @@ import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeV
 
 class FragmentHome: Fragment() {
 
-
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var adapterHome : AdapterUser
     private lateinit var homeVM : HomeVM
@@ -28,7 +27,7 @@ class FragmentHome: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState:Bundle?
-    ): View?{
+    ): View{
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return bindingHome.root
     }

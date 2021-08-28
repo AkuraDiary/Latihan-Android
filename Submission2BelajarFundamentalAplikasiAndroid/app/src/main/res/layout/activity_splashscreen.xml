@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:id="@+id/splashscreen_bg"
     android:background="@color/black"
     tools:context=".activities.SplashscreenActivity">
 
@@ -16,7 +15,6 @@
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/Judul"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,7 +26,6 @@
             android:textStyle="bold" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
