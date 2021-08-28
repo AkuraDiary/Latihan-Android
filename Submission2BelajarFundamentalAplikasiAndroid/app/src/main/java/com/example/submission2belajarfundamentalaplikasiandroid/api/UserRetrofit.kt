@@ -27,7 +27,7 @@ object UserRetrofit {
     fun getUserFollowers(Username: String) = liveData(Dispatchers.IO){
         emit(ResourceStats.onLoading(null))
         try{
-            emit(ResourceStats.onSuccess(RConfig.API_Client.userDetails(Username)))
+            emit(ResourceStats.onSuccess(RConfig.API_Client.userFollowers(Username)))
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user followers"))
         }
@@ -36,7 +36,7 @@ object UserRetrofit {
     fun getUserFollowing(Username:String) = liveData(Dispatchers.IO){
         emit(ResourceStats.onLoading(null))
         try{
-            emit(ResourceStats.onSuccess(RConfig.API_Client.userDetails(Username)))
+            emit(ResourceStats.onSuccess(RConfig.API_Client.userFollowings(Username)))
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user following"))
         }

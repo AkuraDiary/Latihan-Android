@@ -14,7 +14,7 @@ interface ClientAPI {
     @GET("users/{username}")
     suspend fun userDetails(
         @Path("username") username: String?
-    )
+    ):User
 
     @GET("users/{username}/followers")
     suspend fun userFollowers(

@@ -7,7 +7,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 
 @BindingAdapter("avatar")
-fun Avatar(imageView: ImageView, avatar:String)=
+fun avatar(imageView: ImageView, avatar:String)=
     Glide.with(imageView)
         .load(avatar)
         .apply(RequestOptions.circleCropTransform().placeholder(R.drawable.ic_user_24))

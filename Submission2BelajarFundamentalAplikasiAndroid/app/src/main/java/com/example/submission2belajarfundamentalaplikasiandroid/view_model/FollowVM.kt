@@ -11,10 +11,10 @@ import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 
 class FollowVM : ViewModel(){
 
-    private lateinit var type: FollowView
     private val userUsername: MutableLiveData<String> = MutableLiveData()
+    private lateinit var type: FollowView
 
-    val dataFollows : LiveData<ResourceStats<Unit>> = Transformations
+    val dataFollows : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
             when(type){
                 FollowView.FOLLOWERS -> {

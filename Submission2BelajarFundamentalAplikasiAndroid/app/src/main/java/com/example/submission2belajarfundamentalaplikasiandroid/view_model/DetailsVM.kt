@@ -8,7 +8,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 class DetailsVM : ViewModel()  {
     private val userUsername: MutableLiveData<String> = MutableLiveData()
 
-    val dataDetail : LiveData<ResourceStats<Unit>> = Transformations
+    val dataDetail : LiveData<ResourceStats<User>> = Transformations
         .switchMap(userUsername) {
             UserRetrofit.getUserDetail(it)
         }

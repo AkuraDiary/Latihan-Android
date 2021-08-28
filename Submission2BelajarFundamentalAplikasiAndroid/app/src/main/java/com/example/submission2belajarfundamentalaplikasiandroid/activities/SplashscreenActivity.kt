@@ -5,20 +5,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.ActivitySplashscreenBinding
-import kotlinx.android.synthetic.main.activity_splashscreen.*
 import java.lang.Exception
 
 class SplashscreenActivity : AppCompatActivity() {
 
-    private lateinit var binding_splash : ActivitySplashscreenBinding
+    private lateinit var bindingSplash : ActivitySplashscreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding_splash = ActivitySplashscreenBinding.inflate(layoutInflater)
+        bindingSplash = ActivitySplashscreenBinding.inflate(layoutInflater)
 
-        setContentView(binding_splash.root)
+        setContentView(bindingSplash.root)
+
 
         // animasi progress bar
+        val progressBar = bindingSplash.progressBar
         progressBar.max = 100
         val barAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100)
         barAnimation.duration = 2500
@@ -31,7 +32,7 @@ class SplashscreenActivity : AppCompatActivity() {
                     /* do some code here while loading */
                     sleep(3000)
                     // continue to the next activity
-                    val intent = Intent(baseContext, MainActivity::class.java)
+                    val intent = Intent(this@SplashscreenActivity, MainActivity::class.java)
                     startActivity(intent)
                 }catch(e:Exception){
                     e.printStackTrace()

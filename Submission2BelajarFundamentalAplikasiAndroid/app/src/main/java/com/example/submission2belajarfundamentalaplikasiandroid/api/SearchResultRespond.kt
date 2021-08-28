@@ -2,7 +2,7 @@ package com.example.submission2belajarfundamentalaplikasiandroid.api
 
 import android.os.Parcelable
 import com.example.submission2belajarfundamentalaplikasiandroid.user.User
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SearchResultRespond(
