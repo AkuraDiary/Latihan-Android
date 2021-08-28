@@ -26,6 +26,13 @@ class FragmentFollow : Fragment(){
     private var type: String? = null
     private var showStates = ShowStates(followStateId)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            username = it.getString(USERNAME).toString()
+            type = it.getString(TYPE)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

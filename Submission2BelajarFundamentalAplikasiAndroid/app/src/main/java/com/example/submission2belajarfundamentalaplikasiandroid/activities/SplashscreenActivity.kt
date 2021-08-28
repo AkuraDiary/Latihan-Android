@@ -12,11 +12,11 @@ class SplashscreenActivity : AppCompatActivity() {
     private lateinit var bindingSplash : ActivitySplashscreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         bindingSplash = ActivitySplashscreenBinding.inflate(layoutInflater)
 
         setContentView(bindingSplash.root)
-
 
         // animasi progress bar
         val progressBar = bindingSplash.progressBar

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Bisa di translate-->
+    <string name="lang_settings">Pengaturan Bahsa</string>
+    <string name="txt_folower">Pengikut</string>
+    <string name="txt_folowing">Mengikuti</string>
+    <string name="search_placeholderHint">Cari Seseorang disini</string>
+    <string name="user_not_found">tidak dapat menemukan pengguna</string>
+    <string name="deskripsi_img_github">logo github</string>
+    <string name="kosong">%1$ Tidak Punya %2$s</string>
+</resources>

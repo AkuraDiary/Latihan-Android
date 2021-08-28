@@ -25,6 +25,7 @@ class FragmentDetail : Fragment() {
         super.onCreate(savedInstanceState)
         detailVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(detailVM::class.java)
+        detailVM.setForDetails(args.username)
     }
 
     override fun onCreateView(

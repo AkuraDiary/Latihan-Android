@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 29
 
     defaultConfig {
         applicationId "com.example.submission2belajarfundamentalaplikasiandroid"
         minSdk 25
-        targetSdk 30
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -52,7 +52,7 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.+'
-
+    //noinspection GradleCompatible
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 

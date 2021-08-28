@@ -43,7 +43,7 @@ class FragmentHome: Fragment() {
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
 
         adapterHome = AdapterUser(arrayListOf()){
-            username, iv -> findNavController().navigate(FragmentHomeDirections.detailsAction(),
+            username, iv -> findNavController().navigate(FragmentHomeDirections.detailsAction(username),
             FragmentNavigatorExtras(iv to username))
         }
 
