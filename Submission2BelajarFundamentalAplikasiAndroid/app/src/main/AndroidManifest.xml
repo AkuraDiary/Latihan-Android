@@ -14,13 +14,13 @@
         android:usesCleartextTraffic="true"
         tools:targetAPI="m"
         android:theme="@style/appTheme"
+        android:configChanges="orientation|screenSize"
         android:fullBackupContent="true">
 
         <activity
             android:name=".activities.SplashscreenActivity"
             android:noHistory="true"
-            android:exported="true"
-            android:configChanges="orientation|screenSize">
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
@@ -29,9 +29,9 @@
         </activity>
 
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="true"
-            android:configChanges="orientation|screenSize"/>
+            android:name=".activities.MainActivity">
+
+        </activity>
 
     </application>
 

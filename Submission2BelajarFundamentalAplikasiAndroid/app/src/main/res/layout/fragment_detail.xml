@@ -14,9 +14,10 @@
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_detail_holder"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.DetailsFragment">
+        tools:context=".FragmentDetail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content_detail"

@@ -19,7 +19,7 @@ class FragmentDetail : Fragment() {
     private lateinit var bindingDetail: FragmentDetailBinding
     private lateinit var pagerAdapter: PagerAdapter
     private lateinit var detailVM : DetailsVM
-    private val args : FragmentDetailArgs by navArgs()
+    private val args: FragmentDetailArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +40,15 @@ class FragmentDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindingDetail.contentDetailHolder.transitionName = args.Username
+        bindingDetail.contentDetailHolder.transitionName = args.username
 
-        detailVM.setForDetails(args.Username)
+        detailVM.setForDetails(args.username)
 
         val tabList = arrayOf(
             resources.getString(R.string.txt_folower),
             resources.getString(R.string.txt_folowing)
         )
-        pagerAdapter = PagerAdapter(tabList, args.Username, this)
+        pagerAdapter = PagerAdapter(tabList, args.username, this)
         bindingDetail.pager.adapter = pagerAdapter
 
         TabLayoutMediator(bindingDetail.tabs, bindingDetail.pager) { tab, position ->
