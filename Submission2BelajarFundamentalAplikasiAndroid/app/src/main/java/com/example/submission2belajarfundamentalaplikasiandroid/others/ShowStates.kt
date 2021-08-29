@@ -11,12 +11,12 @@ class ShowStates(private val Id: Int) {
     fun onLoading(homeViewBinding: FragmentHomeBinding?, followViewBinding: FragmentFollowBinding?){
         when(Id){
             1 -> {
-                homeViewBinding?.errorLayout?.notFoundLayout?.visibility = View.GONE
+                homeViewBinding?.errorLayout?.mainNotFound?.visibility = View.GONE
                 homeViewBinding?.searchProgress?.visibility = View.VISIBLE
                 homeViewBinding?.recyclerHome?.visibility = View.GONE
             }
             2 -> {
-                followViewBinding?.errorLayout?.notFoundLayout?.visibility = View.GONE
+                followViewBinding?.errorLayout?.mainNotFound?.visibility = View.GONE
                 followViewBinding?.followProgress?.visibility = View.VISIBLE
                 followViewBinding?.followRecycler?.visibility = View.GONE
             }
@@ -26,12 +26,12 @@ class ShowStates(private val Id: Int) {
     fun onSuccess(homeViewBinding: FragmentHomeBinding?, followViewBinding: FragmentFollowBinding?){
         when(Id){
             1 -> {
-                homeViewBinding?.errorLayout?.notFoundLayout?.visibility = View.GONE
+                homeViewBinding?.errorLayout?.mainNotFound?.visibility = View.GONE
                 homeViewBinding?.searchProgress?.visibility = View.GONE
                 homeViewBinding?.recyclerHome?.visibility = View.VISIBLE
             }
             2 -> {
-                followViewBinding?.errorLayout?.notFoundLayout?.visibility = View.GONE
+                followViewBinding?.errorLayout?.mainNotFound?.visibility = View.GONE
                 followViewBinding?.followProgress?.visibility = View.GONE
                 followViewBinding?.followRecycler?.visibility = View.VISIBLE
             }
@@ -42,13 +42,13 @@ class ShowStates(private val Id: Int) {
         when(Id){
             1 -> {
                 homeViewBinding?.errorLayout?.emptyText?.text = Message ?: res.getString(R.string.user_not_found)
-                homeViewBinding?.errorLayout?.notFoundLayout?.visibility = View.VISIBLE
+                homeViewBinding?.errorLayout?.mainNotFound?.visibility = View.VISIBLE
                 homeViewBinding?.searchProgress?.visibility = View.GONE
                 homeViewBinding?.recyclerHome?.visibility = View.GONE
             }
             2 -> {
                 followViewBinding?.errorLayout?.emptyText?.text = Message?: res.getString(R.string.user_not_found)
-                followViewBinding?.errorLayout?.notFoundLayout?.visibility = View.VISIBLE
+                followViewBinding?.errorLayout?.mainNotFound?.visibility = View.VISIBLE
                 followViewBinding?.followProgress?.visibility = View.GONE
                 followViewBinding?.followRecycler?.visibility = View.GONE
             }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/followRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
@@ -15,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ProgressBar
+        android:id="@+id/followProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <include
+        android:id="@+id/errorLayout"
         layout="@layout/empty_layout_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

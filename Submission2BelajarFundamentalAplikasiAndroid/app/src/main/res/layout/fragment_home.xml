@@ -34,6 +34,7 @@
     </androidx.cardview.widget.CardView>
 
     <ProgressBar
+        android:id="@+id/searchProgress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
