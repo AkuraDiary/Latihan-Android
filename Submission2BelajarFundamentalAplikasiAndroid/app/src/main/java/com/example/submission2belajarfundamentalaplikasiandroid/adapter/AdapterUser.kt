@@ -1,6 +1,7 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.adapter
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class AdapterUser(private val dataUser: ArrayList<User>, private val clickListen
         dataUser.apply{
             clear()
             addAll(Items)
+            Log.d("user adapter", "setData")
         }
         notifyDataSetChanged()
     }

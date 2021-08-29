@@ -1,11 +1,13 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -38,6 +40,7 @@ class FragmentHome: Fragment() {
 
         homeVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(HomeVM::class.java)
+        Log.d("fragment home", "getVM")
 
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
 
@@ -48,6 +51,8 @@ class FragmentHome: Fragment() {
 
         bindingHome.recyclerHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = adapterHome
+            Log.d("homeRV", "apply")
         }
 
         bindingHome.searchBar.apply {
@@ -56,6 +61,7 @@ class FragmentHome: Fragment() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String): Boolean {
                     homeVM.setForSearch(query)
+                    Log.d("search", "submit")
                     bindingHome.searchBar.clearFocus()
                     return true
                 }
@@ -69,23 +75,27 @@ class FragmentHome: Fragment() {
     }
 
     private fun observeHome(){
-        homeVM.searchRes.observe(viewLifecycleOwner, {
-
-            it?.let { resourceStats -> when(resourceStats.states){
-                myStates.IS_SUCCESS ->{
-                    resourceStats.data?.let { users ->
-                        if (!users.isNullOrEmpty()){
-                            showStates.onSuccess(bindingHome, null)
-                        }else{
-                            showStates.onError(bindingHome, null, null, resources)
+        homeVM.searchRes.observe(viewLifecycleOwner, Observer {
+            Log.d("OBSERVE HOME", "start")
+            it?.let { resourceStats ->
+                when(resourceStats.states){
+                    myStates.IS_SUCCESS ->{
+                        resourceStats.data?.let {
+                                users ->
+                            if (!users.isNullOrEmpty()){
+                                showStates.onSuccess(bindingHome, null)
+                                adapterHome.setData(users)
+                            }else{
+                                showStates.onError(bindingHome, null, null, resources)
+                            }
                         }
                     }
-                }
                 myStates.IS_LOADING -> showStates.onLoading(bindingHome, null)
                 myStates.IS_ERROR -> showStates.onError(bindingHome, null, it.message, resources)
                 }
             }
         })
+        Log.d("OBSERVE HOME", "finnish")
     }
 
     companion object{

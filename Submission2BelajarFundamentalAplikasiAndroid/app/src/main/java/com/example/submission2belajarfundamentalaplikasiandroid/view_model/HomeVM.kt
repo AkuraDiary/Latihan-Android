@@ -1,5 +1,6 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -13,10 +14,11 @@ class HomeVM : ViewModel(){
 
     val searchRes : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
-            UserRetrofit.searchForUser(it)
+            UserRetrofit.searchForUsers(it)
         }
 
     fun setForSearch(Query : String){
+        Log.d("HOME VM", "set for search")
         if(userUsername.value == Query){
             return
         }

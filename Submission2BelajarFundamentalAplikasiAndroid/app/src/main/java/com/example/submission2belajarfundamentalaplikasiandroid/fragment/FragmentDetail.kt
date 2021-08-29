@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -59,7 +60,7 @@ class FragmentDetail : Fragment() {
     }
 
     private fun observeDetail() {
-        detailVM.dataDetail.observe(viewLifecycleOwner, {
+        detailVM.dataDetail.observe(viewLifecycleOwner, Observer{
             if (it.states == myStates.IS_SUCCESS) {
                 bindingDetail.userData = it.data
             }
@@ -67,16 +68,13 @@ class FragmentDetail : Fragment() {
     }
 
     inner class PagerAdapter(
-        private val tablist: Array<String>,
+        private val tabList: Array<String>,
         private val username: String,
         fragment : Fragment
     ): FragmentStateAdapter(fragment){
-        override fun getItemCount(): Int {
-            return tablist.size
-        }
 
-        override fun createFragment(position: Int): Fragment {
-            return FragmentFollow.newInstance(username, tablist[position])
-        }
+        override fun getItemCount(): Int { return tabList.size }
+
+        override fun createFragment(position: Int): Fragment { return FragmentFollow.newInstance(username, tabList[position]) }
     }
 }

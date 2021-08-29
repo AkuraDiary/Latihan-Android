@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //menuju pengaturan bahasa
     override fun onOptionsItemSelected(item:MenuItem): Boolean{
         if(item.itemId == R.id.menu_setting){
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
