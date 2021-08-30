@@ -14,6 +14,7 @@ class HomeVM : ViewModel(){
 
     val searchRes : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
+            Log.d("Search Res", "Searching")
             UserRetrofit.searchForUsers(it)
         }
 

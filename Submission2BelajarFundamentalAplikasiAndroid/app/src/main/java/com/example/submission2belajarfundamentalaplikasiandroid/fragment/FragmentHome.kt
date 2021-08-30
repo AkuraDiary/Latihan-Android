@@ -26,12 +26,11 @@ class FragmentHome: Fragment() {
     private lateinit var homeVM : HomeVM
     private var showStates = ShowStates(homeStateId)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState:Bundle?
-    ): View{
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:Bundle?): View{
+
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return bindingHome.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,13 +84,20 @@ class FragmentHome: Fragment() {
                             if (!users.isNullOrEmpty()){
                                 showStates.onSuccess(bindingHome, null)
                                 adapterHome.setData(users)
+                                Log.d("OBSERVE HOME", "set Data")
                             }else{
                                 showStates.onError(bindingHome, null, null, resources)
                             }
                         }
                     }
-                myStates.IS_LOADING -> showStates.onLoading(bindingHome, null)
-                myStates.IS_ERROR -> showStates.onError(bindingHome, null, it.message, resources)
+                myStates.IS_LOADING -> {
+                    showStates.onLoading(bindingHome, null)
+                    Log.d("OBSERVE HOME", "loading state")
+                }
+                myStates.IS_ERROR -> {
+                    showStates.onError(bindingHome, null, it.message, resources)
+                    Log.d("OBSERVE HOME", "Error Stats")
+                }
                 }
             }
         })

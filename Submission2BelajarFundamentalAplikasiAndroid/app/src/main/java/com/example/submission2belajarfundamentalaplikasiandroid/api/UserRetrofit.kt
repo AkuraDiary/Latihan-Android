@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import kotlinx.coroutines.Dispatchers
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ResourceStats
 
-object UserRetrofit :Thread(){
+object UserRetrofit {
 
     fun searchForUsers(Query: String) = liveData(Dispatchers.IO) {
         Log.d("User Retrofit", "search for user")

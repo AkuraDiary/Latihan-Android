@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RConfig : Thread(){
+object RConfig {
 
     //private const val MY_GITHUB_API_KEY = "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"//replace the github API
     //private const val githubUrl = "https://api.github.com"
@@ -38,7 +38,7 @@ object RConfig : Thread(){
 
     val API_Client : ClientAPI by lazy{
         Log.d("CLIENT API", "Build")
-        retrofit_Builder.build()
-            .create(ClientAPI::class.java)
+        retrofit_Builder.build().
+        create(ClientAPI::class.java)
     }
 }
