@@ -14,12 +14,12 @@ class HomeVM : ViewModel(){
 
     val searchRes : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
-            Log.d("Search Res", "Searching")
+            Log.d("Search Res", it)
             UserRetrofit.searchForUsers(it)
         }
 
     fun setForSearch(Query : String){
-        Log.d("HOME VM", "set for search")
+        Log.d("HOME VM", "set for search $Query")
         if(userUsername.value == Query){
             return
         }

@@ -19,26 +19,28 @@ object RConfig {
                 val reqBuilder = origin.newBuilder()
                     . header("Authorization", "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")
                 val clientRequest = reqBuilder.build()
-                Log.d("okhttpclient", "proceed")
+                Log.d("okhttpclient", "proceed $clientRequest")
                 chain.proceed(clientRequest)
             }
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
+            .pingInterval(1, TimeUnit.SECONDS)
             .build()
     }
 
     private val retrofit_Builder: Retrofit.Builder by lazy{
-        Log.d("retrofit", "build")
+        Log.d("retrofit", "build $client")
         Retrofit.Builder()
             .baseUrl("https://api.github.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .callFactory{client.newCall(it)}
     }
 
     val API_Client : ClientAPI by lazy{
-        Log.d("CLIENT API", "Build")
-        retrofit_Builder.build().
-        create(ClientAPI::class.java)
+        Log.d("CLIENT API", "Build ${retrofit_Builder.build()}")
+        Log.d("CLIENT API", "Build ${retrofit_Builder.client(client)}")
+        retrofit_Builder.build().create(ClientAPI::class.java)
     }
 }

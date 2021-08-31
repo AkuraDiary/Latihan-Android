@@ -8,11 +8,12 @@ import com.example.submission2belajarfundamentalaplikasiandroid.others.ResourceS
 object UserRetrofit {
 
     fun searchForUsers(Query: String) = liveData(Dispatchers.IO) {
-        Log.d("User Retrofit", "search for user")
         emit(ResourceStats.onLoading(null))
-
+        Log.d("User Retrofit", ResourceStats.onLoading(null).toString())
         try {
             val userSearch = RConfig.API_Client.searchForUsers(Query)
+            Log.d("User Retrofit Search for Users", "searching for $Query")
+            Log.d("User Retrofit", "emitting user resource $userSearch")
             emit(ResourceStats.onSuccess(userSearch.items_res))
         } catch (e: Exception){
             emit(ResourceStats.onError(null, e.message ?: "Error occurred while searching for user"))
@@ -24,6 +25,7 @@ object UserRetrofit {
         try{
             val userDetails = RConfig.API_Client.userDetails(Username)
             emit(ResourceStats.onSuccess(userDetails))
+            Log.d("User Retrofit", "get user detail")
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user detail"))
         }
@@ -34,6 +36,7 @@ object UserRetrofit {
         try{
             val userFollower = RConfig.API_Client.userFollowers(Username)
             emit(ResourceStats.onSuccess(userFollower))
+            Log.d("User Retrofit", "get follower")
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user followers"))
         }
@@ -44,6 +47,7 @@ object UserRetrofit {
         try{
             val userFollowing = RConfig.API_Client.userFollowings(Username)
             emit(ResourceStats.onSuccess(userFollowing))
+            Log.d("User Retrofit", "get following")
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user following"))
         }

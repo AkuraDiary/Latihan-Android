@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 import com.example.submission2belajarfundamentalaplikasiandroid.adapter.AdapterUser
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
+import com.example.submission2belajarfundamentalaplikasiandroid.others.ResourceStats
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.others.myStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeVM
@@ -51,7 +52,7 @@ class FragmentHome: Fragment() {
         bindingHome.recyclerHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = adapterHome
-            Log.d("homeRV", "apply")
+            Log.d("homeRV", "apply $context")
         }
 
         bindingHome.searchBar.apply {
@@ -60,7 +61,7 @@ class FragmentHome: Fragment() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String): Boolean {
                     homeVM.setForSearch(query)
-                    Log.d("search", "submit")
+                    Log.d("search", "submit $query")
                     bindingHome.searchBar.clearFocus()
                     return true
                 }
