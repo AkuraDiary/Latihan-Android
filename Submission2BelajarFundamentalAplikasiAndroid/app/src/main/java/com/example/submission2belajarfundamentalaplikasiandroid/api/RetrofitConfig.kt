@@ -8,11 +8,6 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitConfig {
 
-    //private const val MY_GITHUB_API_KEY = "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"//replace the github API
-    //private const val githubUrl = "https://api.github.com"
-
-    //private lateinit var request : Request
-    //private lateinit var dispatcher: Dispatcher
 
     private val client by lazy{
         Log.d("client", "build")
@@ -20,7 +15,7 @@ object RetrofitConfig {
             .addInterceptor{ chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
-                    .header("Authorization", "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")//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")
+                    .header("Authorization", "Change with your github token")
                 val request = requestBuilder.build()
                 Log.d("okhttpclient", "proceed $request")
                 chain.proceed(request)
