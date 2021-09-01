@@ -13,9 +13,8 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
-import com.example.submission2belajarfundamentalaplikasiandroid.adapter.AdapterUser
+import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
-import com.example.submission2belajarfundamentalaplikasiandroid.others.ResourceStats
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.others.myStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeVM
@@ -23,7 +22,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeV
 class FragmentHome: Fragment() {
 
     private lateinit var bindingHome: FragmentHomeBinding
-    private lateinit var adapterHome : AdapterUser
+    private lateinit var homeAdapter : UserAdapter
     private lateinit var homeVM : HomeVM
     private var showStates = ShowStates(homeStateId)
 
@@ -44,14 +43,17 @@ class FragmentHome: Fragment() {
 
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
 
-        adapterHome = AdapterUser(arrayListOf()){
-            username, iv -> findNavController().navigate(FragmentHomeDirections.detailsAction(username),
-            FragmentNavigatorExtras(iv to username))
+        homeAdapter = UserAdapter(arrayListOf()){ username, iv ->
+            findNavController().navigate(FragmentHomeDirections.detailsAction(username),
+                FragmentNavigatorExtras(
+                    iv to username
+                )
+            )
         }
 
         bindingHome.recyclerHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = adapterHome
+            adapter = homeAdapter
             Log.d("homeRV", "apply $context")
         }
 
@@ -75,17 +77,16 @@ class FragmentHome: Fragment() {
     }
 
     private fun observeHome(){
-        homeVM.searchRes.observe(viewLifecycleOwner, Observer {
+        homeVM.searchResult.observe(viewLifecycleOwner, Observer {
             Log.d("OBSERVE HOME", "start")
             it?.let { resourceStats ->
                 when(resourceStats.states){
                     myStates.IS_SUCCESS ->{
-                        resourceStats.data?.let {
-                                users ->
+                        resourceStats.data?.let { users ->
                             if (!users.isNullOrEmpty()){
                                 showStates.onSuccess(bindingHome, null)
-                                adapterHome.setData(users)
-                                Log.d("OBSERVE HOME", "set Data")
+                                homeAdapter.setData(users)
+                                Log.d("OBSERVE HOME", "set Data $users")
                             }else{
                                 showStates.onError(bindingHome, null, null, resources)
                             }

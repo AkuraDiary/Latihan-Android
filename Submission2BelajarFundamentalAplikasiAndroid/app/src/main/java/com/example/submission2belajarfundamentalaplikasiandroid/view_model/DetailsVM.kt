@@ -15,7 +15,7 @@ class DetailsVM : ViewModel()  {
             UserRetrofit.getUserDetail(it)
         }
 
-    fun setForDetails(userID:String){
+    fun setDetail(userID:String){
         if(userUsername.value == userID){
             return
         }

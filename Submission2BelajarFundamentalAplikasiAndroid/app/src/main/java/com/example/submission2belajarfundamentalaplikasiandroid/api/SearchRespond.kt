@@ -5,8 +5,8 @@ import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SearchResultRespond(
-    val total : String,
-    val incomplete_reslt: Boolean? = null,
-    val items_res : List<User>
+data class SearchRespond(
+    val total_count : String,
+    val incomplete_result: Boolean? = null,
+    val items : List<User>
 ):Parcelable

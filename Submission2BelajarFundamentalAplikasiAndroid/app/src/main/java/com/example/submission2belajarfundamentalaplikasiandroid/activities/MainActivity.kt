@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController : NavController
+    private lateinit var navHostFragment: NavHostFragment
     private lateinit var appBarrConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        navController = findNavController(R.id.nav_host_fragment_container)
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navHostFragment.navController
+        //navController = findNavController(R.id.nav_host_fragment_container)
 
         appBarrConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarrConfiguration)

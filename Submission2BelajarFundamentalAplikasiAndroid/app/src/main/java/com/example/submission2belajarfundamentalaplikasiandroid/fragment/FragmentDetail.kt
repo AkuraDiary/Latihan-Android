@@ -1,6 +1,7 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,8 @@ class FragmentDetail : Fragment() {
         super.onCreate(savedInstanceState)
         detailVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(detailVM::class.java)
-        detailVM.setForDetails(args.username)
+        Log.d("Detail Fragment on Create", args.toString())
+        detailVM.setDetail(args.username)
     }
 
     override fun onCreateView(
@@ -41,11 +43,9 @@ class FragmentDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         bindingDetail.contentDetailHolder.transitionName = args.username
 
-        detailVM.setForDetails(args.username)
-
+        //detailVM.setDetail(args.Username)
         val tabList = arrayOf(
             resources.getString(R.string.txt_folower),
             resources.getString(R.string.txt_folowing)

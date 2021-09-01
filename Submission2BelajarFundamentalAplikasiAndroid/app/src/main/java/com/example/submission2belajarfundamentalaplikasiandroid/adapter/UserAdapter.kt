@@ -1,6 +1,7 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.adapter
 
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.databinding.List
 import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 
 
-class AdapterUser(private val dataUser: ArrayList<User>, private val clickListener:(String,View)->Unit):RecyclerView.Adapter<AdapterUser.UserViewHolder>() {
+class UserAdapter(private val dataUser: ArrayList<User>, private val clickListener:(String, View)->Unit):RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
         inner class UserViewHolder(private val binding: ListLayoutUserBinding):RecyclerView.ViewHolder(binding.root){
             fun bind(user: User, click:(String, View)->Unit){
@@ -23,6 +24,7 @@ class AdapterUser(private val dataUser: ArrayList<User>, private val clickListen
         }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(Items: List<User>){
         dataUser.apply{
             clear()

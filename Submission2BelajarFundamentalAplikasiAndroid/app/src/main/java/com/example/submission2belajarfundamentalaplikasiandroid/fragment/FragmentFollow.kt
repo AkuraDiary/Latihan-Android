@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
-import com.example.submission2belajarfundamentalaplikasiandroid.adapter.AdapterUser
+import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentFollowBinding
 import com.example.submission2belajarfundamentalaplikasiandroid.others.FollowView
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
@@ -21,7 +21,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.view_model.Follo
 class FragmentFollow : Fragment(){
 
     private lateinit var bindingFollow: FragmentFollowBinding
-    private lateinit var adapterUser : AdapterUser
+    private lateinit var userAdapter : UserAdapter
     private lateinit var followVM : FollowVM
     private lateinit var username:String
     private var type: String? = null
@@ -47,17 +47,18 @@ class FragmentFollow : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapterUser = AdapterUser(arrayListOf()){
-            user, _ -> Toast.makeText(context, user, Toast.LENGTH_SHORT).show()
+        userAdapter = UserAdapter(arrayListOf()){ user, _ ->
+            Toast.makeText(context, user, Toast.LENGTH_SHORT).show()
         }
 
         bindingFollow.followRecycler.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = adapterUser
+            adapter = userAdapter
         }
 
-        followVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(FollowVM::class.java)
+        followVM = ViewModelProvider(
+            this, ViewModelProvider.NewInstanceFactory()
+        ).get(FollowVM::class.java)
 
         when(type){
             resources.getString(R.string.txt_folowing)->followVM.setFollows(username, FollowView.FOLLOWINGS)
@@ -73,10 +74,14 @@ class FragmentFollow : Fragment(){
                 myStates.IS_SUCCESS ->
                     if(!it.data.isNullOrEmpty()){
                         showStates.onSuccess(null, bindingFollow)
-                        adapterUser.run{setData(it.data)}
+                        userAdapter.run{setData(it.data)}
                     }else{
                         val stringRes = resources.getString(R.string.kosong, username, type)
-                        showStates.onError(null, bindingFollow, stringRes, resources)
+
+                        showStates.onError(null,
+                            bindingFollow,
+                            stringRes,
+                            resources)
                     }
                 myStates.IS_LOADING -> showStates.onLoading(null, bindingFollow)
                 myStates.IS_ERROR -> showStates.onError(null, bindingFollow, it.message, resources)

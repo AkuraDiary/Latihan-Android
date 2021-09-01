@@ -12,15 +12,16 @@ import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 class HomeVM : ViewModel(){
     private val userUsername: MutableLiveData<String> = MutableLiveData()
 
-    val searchRes : LiveData<ResourceStats<List<User>>> = Transformations
+    val searchResult : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
-            Log.d("Search Res", it)
-            UserRetrofit.searchForUsers(it)
+            Log.d("Search Res switchmap", UserRetrofit.searchUsers(it).toString())
+            UserRetrofit.searchUsers(it)
         }
 
     fun setForSearch(Query : String){
         Log.d("HOME VM", "set for search $Query")
         if(userUsername.value == Query){
+            Log.d("HOME VM setForSerSearch return", userUsername.value.toString())
             return
         }
         userUsername.value = Query
