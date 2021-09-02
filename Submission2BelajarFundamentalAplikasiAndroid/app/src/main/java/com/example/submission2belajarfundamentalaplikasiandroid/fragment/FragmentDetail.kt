@@ -34,7 +34,9 @@ class FragmentDetail : Fragment() {
     ): View {
         bindingDetail = FragmentDetailBinding.inflate(layoutInflater, container, false)
         bindingDetail.lifecycleOwner = viewLifecycleOwner
+
         observeDetail()
+
         return bindingDetail.root
     }
 
