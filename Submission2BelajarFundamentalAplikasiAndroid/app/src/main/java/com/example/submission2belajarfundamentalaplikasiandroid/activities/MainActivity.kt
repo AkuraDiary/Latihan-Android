@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,6 +15,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.ActivityMainBinding
+import com.example.submission2belajarfundamentalaplikasiandroid.view_model.DetailsVM
+import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeVM
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         appBarrConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarrConfiguration)
+
+        var detailVMInit = ViewModelProvider(this).get(DetailsVM::class.java)
 
     }
 

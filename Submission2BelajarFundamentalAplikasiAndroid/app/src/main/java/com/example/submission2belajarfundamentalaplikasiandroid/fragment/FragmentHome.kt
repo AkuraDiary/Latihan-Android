@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
+import com.example.submission2belajarfundamentalaplikasiandroid.activities.MainActivity
 import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
@@ -27,10 +29,8 @@ class FragmentHome: Fragment() {
     private var showStates = ShowStates(homeStateId)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:Bundle?): View{
-
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return bindingHome.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +77,7 @@ class FragmentHome: Fragment() {
     }
 
     private fun observeHome(){
-        homeVM.searchResult.observe(viewLifecycleOwner, Observer {
+        homeVM.searchResult.observe(viewLifecycleOwner, {
             Log.d("OBSERVE HOME", "start")
             it?.let { resourceStats ->
                 when(resourceStats.states){

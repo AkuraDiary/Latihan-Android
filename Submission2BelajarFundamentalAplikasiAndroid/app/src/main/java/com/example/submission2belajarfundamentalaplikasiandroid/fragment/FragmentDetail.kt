@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -20,13 +21,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 class FragmentDetail : Fragment() {
     private lateinit var bindingDetail: FragmentDetailBinding
     private lateinit var pagerAdapter: PagerAdapter
-    private lateinit var detailVM : DetailsVM
+    private val detailVM : DetailsVM by activityViewModels()//DetailsVM
     private val args: FragmentDetailArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detailVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(detailVM::class.java)
+        /*detailVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
+            .get(detailVM::class.java)*/
         Log.d("Detail Fragment on Create", args.toString())
         detailVM.setDetail(args.username)
     }
@@ -60,7 +61,7 @@ class FragmentDetail : Fragment() {
     }
 
     private fun observeDetail() {
-        detailVM.dataDetail.observe(viewLifecycleOwner, Observer{
+        detailVM.dataDetail.observe(viewLifecycleOwner, {
             if (it.states == myStates.IS_SUCCESS) {
                 bindingDetail.userData = it.data
             }
