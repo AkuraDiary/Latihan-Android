@@ -14,7 +14,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdap
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentFollowBinding
 import com.example.submission2belajarfundamentalaplikasiandroid.others.FollowView
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
-import com.example.submission2belajarfundamentalaplikasiandroid.others.myStates
+import com.example.submission2belajarfundamentalaplikasiandroid.others.MyStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.FollowVM
 
 
@@ -71,7 +71,7 @@ class FragmentFollow : Fragment(){
     private fun observeFollow(){
         followVM.dataFollows.observe(viewLifecycleOwner, Observer {
             when(it.states){
-                myStates.IS_SUCCESS ->
+                MyStates.IS_SUCCESS ->
                     if(!it.data.isNullOrEmpty()){
                         showStates.onSuccess(null, bindingFollow)
                         userAdapter.run{setData(it.data)}
@@ -83,8 +83,8 @@ class FragmentFollow : Fragment(){
                             stringRes,
                             resources)
                     }
-                myStates.IS_LOADING -> showStates.onLoading(null, bindingFollow)
-                myStates.IS_ERROR -> showStates.onError(null, bindingFollow, it.message, resources)
+                MyStates.IS_LOADING -> showStates.onLoading(null, bindingFollow)
+                MyStates.IS_ERROR -> showStates.onError(null, bindingFollow, it.message, resources)
             }
         })
     }

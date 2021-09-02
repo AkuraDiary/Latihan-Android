@@ -24,12 +24,13 @@ class UserAdapter(private val dataUser: ArrayList<User>, private val clickListen
         }
 
 
+    //@SuppressLint("NotifyDataSetChanged")
     @SuppressLint("NotifyDataSetChanged")
     fun setData(Items: List<User>){
         dataUser.apply{
             clear()
             addAll(Items)
-            Log.d("user adapter", "setData")
+            Log.d("user adapter", "setData $Items")
         }
         notifyDataSetChanged()
     }

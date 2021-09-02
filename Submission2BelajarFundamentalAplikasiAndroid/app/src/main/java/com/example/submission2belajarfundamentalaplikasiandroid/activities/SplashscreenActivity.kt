@@ -2,16 +2,14 @@ package com.example.submission2belajarfundamentalaplikasiandroid.activities
 
 import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.ActivitySplashscreenBinding
-import java.lang.Exception
 
 class SplashscreenActivity : AppCompatActivity() {
 
     private lateinit var bindingSplash : ActivitySplashscreenBinding
-    private lateinit var handler : Handler
+    //private lateinit var handler : Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -25,18 +23,19 @@ class SplashscreenActivity : AppCompatActivity() {
         progressBar.max = 100
         val barAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100)
         barAnimation.duration = 2500
+
         // start the progress bar animation
         barAnimation.start()
 
-        handler = Handler()
+        /*handler = Handler()
 
         handler.postDelayed({
             val intent = Intent(this@SplashscreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 3000)*/
 
-        /*val background = object : Thread(){
+        val background = object : Thread(){
             override fun run(){
                 try{
                     /* do some code here while loading */
@@ -49,6 +48,6 @@ class SplashscreenActivity : AppCompatActivity() {
                 }
             }
         }
-        background.start()*/
+        background.start()
     }
 }

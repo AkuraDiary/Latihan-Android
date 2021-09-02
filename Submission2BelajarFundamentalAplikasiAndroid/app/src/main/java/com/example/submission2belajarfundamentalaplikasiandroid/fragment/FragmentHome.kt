@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
-import com.example.submission2belajarfundamentalaplikasiandroid.activities.MainActivity
 import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
 import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
-import com.example.submission2belajarfundamentalaplikasiandroid.others.myStates
+import com.example.submission2belajarfundamentalaplikasiandroid.others.MyStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeVM
 
 class FragmentHome: Fragment() {
@@ -27,6 +24,7 @@ class FragmentHome: Fragment() {
     private lateinit var homeAdapter : UserAdapter
     private lateinit var homeVM : HomeVM
     private var showStates = ShowStates(homeStateId)
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:Bundle?): View{
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
@@ -81,7 +79,7 @@ class FragmentHome: Fragment() {
             Log.d("OBSERVE HOME", "start")
             it?.let { resourceStats ->
                 when(resourceStats.states){
-                    myStates.IS_SUCCESS ->{
+                    MyStates.IS_SUCCESS ->{
                         resourceStats.data?.let { users ->
                             if (!users.isNullOrEmpty()){
                                 showStates.onSuccess(bindingHome, null)
@@ -92,11 +90,11 @@ class FragmentHome: Fragment() {
                             }
                         }
                     }
-                myStates.IS_LOADING -> {
+                MyStates.IS_LOADING -> {
                     showStates.onLoading(bindingHome, null)
                     Log.d("OBSERVE HOME", "loading state")
                 }
-                myStates.IS_ERROR -> {
+                MyStates.IS_ERROR -> {
                     showStates.onError(bindingHome, null, it.message, resources)
                     Log.d("OBSERVE HOME", "Error Stats")
                 }

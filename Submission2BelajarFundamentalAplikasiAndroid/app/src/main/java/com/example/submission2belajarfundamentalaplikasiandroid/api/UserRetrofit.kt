@@ -33,23 +33,23 @@ object UserRetrofit {
         }
     }
 
-    fun getUserFollowers(Username: String) = liveData(Dispatchers.Default){
+    fun getUserFollowers(Username: String) = liveData(Dispatchers.IO){
         emit(ResourceStats.onLoading(null))
         try{
             val userFollower = RetrofitConfig.apiClient.userFollowers(Username)
             emit(ResourceStats.onSuccess(userFollower))
-            Log.d("User Retrofit", "get follower")
+            Log.d("User Retrofit", "get follower $userFollower")
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user followers"))
         }
     }
 
-    fun getUserFollowing(Username:String) = liveData(Dispatchers.Default){
+    fun getUserFollowing(Username:String) = liveData(Dispatchers.IO){
         emit(ResourceStats.onLoading(null))
         try{
             val userFollowing = RetrofitConfig.apiClient.userFollowings(Username)
             emit(ResourceStats.onSuccess(userFollowing))
-            Log.d("User Retrofit", "get following")
+            Log.d("User Retrofit", "get following $userFollowing")
         }catch (e:Exception){
             emit(ResourceStats.onError(null, e.message?: "Error occurred while get user following"))
         }

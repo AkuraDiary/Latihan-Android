@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentDetailBinding
-import com.example.submission2belajarfundamentalaplikasiandroid.others.myStates
+import com.example.submission2belajarfundamentalaplikasiandroid.others.MyStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.DetailsVM
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,8 +24,6 @@ class FragmentDetail : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*detailVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(detailVM::class.java)*/
         Log.d("Detail Fragment on Create", args.toString())
         detailVM.setDetail(args.username)
     }
@@ -46,7 +42,6 @@ class FragmentDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindingDetail.contentDetailHolder.transitionName = args.username
 
-        //detailVM.setDetail(args.Username)
         val tabList = arrayOf(
             resources.getString(R.string.txt_folower),
             resources.getString(R.string.txt_folowing)
@@ -62,7 +57,7 @@ class FragmentDetail : Fragment() {
 
     private fun observeDetail() {
         detailVM.dataDetail.observe(viewLifecycleOwner, {
-            if (it.states == myStates.IS_SUCCESS) {
+            if (it.states == MyStates.IS_SUCCESS) {
                 bindingDetail.userData = it.data
             }
         })

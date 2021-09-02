@@ -13,6 +13,7 @@
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:theme="@style/ThemeOverlay.AppCompat"
         app:layout_constraintBottom_toTopOf="@id/nav_host_fragment_container"/>
 
     <androidx.fragment.app.FragmentContainerView

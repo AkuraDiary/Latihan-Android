@@ -11,6 +11,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.user.User
 
 class HomeVM : ViewModel(){
     private val userUsername: MutableLiveData<String> = MutableLiveData()
+    //private lateinit var bindingHome: FragmentHomeBinding
 
     val searchResult : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
