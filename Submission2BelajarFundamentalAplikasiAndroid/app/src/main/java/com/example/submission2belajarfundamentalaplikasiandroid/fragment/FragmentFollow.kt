@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentFollowBinding
 import com.example.submission2belajarfundamentalaplikasiandroid.others.FollowView
-import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.others.MyStates
+import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.FollowVM
 
 
@@ -69,18 +68,19 @@ class FragmentFollow : Fragment(){
     }
 
     private fun observeFollow(){
-        followVM.dataFollows.observe(viewLifecycleOwner, Observer {
+        followVM.dataFollows.observe(viewLifecycleOwner, {
             when(it.states){
                 MyStates.IS_SUCCESS ->
                     if(!it.data.isNullOrEmpty()){
                         showStates.onSuccess(null, bindingFollow)
                         userAdapter.run{setData(it.data)}
                     }else{
-                        val stringRes = resources.getString(R.string.kosong, username, type)
+                        //val stringRes = resources.getString(R.string.kosong, username, type)
 
                         showStates.onError(null,
                             bindingFollow,
-                            stringRes,
+                            //stringRes,
+                            resources.getString(R.string.kosong, username, type),
                             resources)
                     }
                 MyStates.IS_LOADING -> showStates.onLoading(null, bindingFollow)

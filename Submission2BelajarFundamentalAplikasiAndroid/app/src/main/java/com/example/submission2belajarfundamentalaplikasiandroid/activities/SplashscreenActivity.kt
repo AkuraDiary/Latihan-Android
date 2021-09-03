@@ -9,7 +9,7 @@ import com.example.submission2belajarfundamentalaplikasiandroid.databinding.Acti
 class SplashscreenActivity : AppCompatActivity() {
 
     private lateinit var bindingSplash : ActivitySplashscreenBinding
-    //private lateinit var handler : Handler
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -26,14 +26,6 @@ class SplashscreenActivity : AppCompatActivity() {
 
         // start the progress bar animation
         barAnimation.start()
-
-        /*handler = Handler()
-
-        handler.postDelayed({
-            val intent = Intent(this@SplashscreenActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)*/
 
         val background = object : Thread(){
             override fun run(){
