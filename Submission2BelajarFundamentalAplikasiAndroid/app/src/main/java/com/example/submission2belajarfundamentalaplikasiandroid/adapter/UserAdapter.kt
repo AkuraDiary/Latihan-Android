@@ -2,7 +2,6 @@ package com.example.submission2belajarfundamentalaplikasiandroid.adapter
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,14 +22,11 @@ class UserAdapter(private val dataUser: ArrayList<User>, private val clickListen
             }
         }
 
-
-    //@SuppressLint("NotifyDataSetChanged")
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(Items: List<User>){
+    fun setUserData(Items: List<User>){
         dataUser.apply{
             clear()
             addAll(Items)
-            Log.d("user adapter", "setData $Items")
         }
         notifyDataSetChanged()
     }

@@ -1,24 +1,22 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.api
 
-import android.util.Log
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitConfig {
+object RetrofitConfiguration {
 
     private const val MY_GITHUB_API_KEY = "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"//replace the github API
+    private const val GITHUB_URL = "https://api.github.com"
 
     private val client by lazy{
-        Log.d("client", "build")
         OkHttpClient.Builder()
             .addInterceptor{ chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
                     .header("Authorization", MY_GITHUB_API_KEY)
                 val request = requestBuilder.build()
-                Log.d("okhttpclient", "proceed $request")
                 chain.proceed(request)
             }
             .connectTimeout(1, TimeUnit.MINUTES)
@@ -28,16 +26,14 @@ object RetrofitConfig {
     }
 
     private val retrofitBuilder: Retrofit.Builder by lazy{
-        Log.d("retrofit", "build client :  $client")
         Retrofit.Builder()
-            .baseUrl("https://api.github.com")
+            .baseUrl(GITHUB_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
     }
 
-    val apiClient : ApiClient by lazy{
-        Log.d("CLIENT API", "Building retrofit builder : ${retrofitBuilder.build()}")
-        retrofitBuilder.build().create(ApiClient::class.java)
+    val CLIENT_API : ClientAPI by lazy{
+        retrofitBuilder.build().create(ClientAPI::class.java)
     }
 }

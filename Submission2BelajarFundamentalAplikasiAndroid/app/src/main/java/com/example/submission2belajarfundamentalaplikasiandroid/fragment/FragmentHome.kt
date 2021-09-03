@@ -1,7 +1,6 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2belajarfundamentalaplikasiandroid.R
 import com.example.submission2belajarfundamentalaplikasiandroid.adapter.UserAdapter
 import com.example.submission2belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
-import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.others.MyStates
+import com.example.submission2belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission2belajarfundamentalaplikasiandroid.view_model.HomeVM
 
 class FragmentHome: Fragment() {
@@ -37,7 +36,6 @@ class FragmentHome: Fragment() {
 
         homeVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(HomeVM::class.java)
-        Log.d("fragment home", "getVM")
 
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
 
@@ -52,7 +50,6 @@ class FragmentHome: Fragment() {
         bindingHome.recyclerHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = homeAdapter
-            Log.d("homeRV", "apply $context")
         }
 
         bindingHome.searchBar.apply {
@@ -61,7 +58,6 @@ class FragmentHome: Fragment() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String): Boolean {
                     homeVM.setForSearch(query)
-                    Log.d("search", "submit $query")
                     bindingHome.searchBar.clearFocus()
                     return true
                 }
@@ -76,32 +72,27 @@ class FragmentHome: Fragment() {
 
     private fun observeHome(){
         homeVM.searchResult.observe(viewLifecycleOwner, {
-            Log.d("OBSERVE HOME", "start")
-            it?.let { resourceStats ->
-                when(resourceStats.states){
-                    MyStates.IS_SUCCESS ->{
-                        resourceStats.data?.let { users ->
-                            if (!users.isNullOrEmpty()){
-                                showStates.onSuccess(bindingHome, null)
-                                homeAdapter.setData(users)
-                                Log.d("OBSERVE HOME", "set Data $users")
-                            }else{
-                                showStates.onError(bindingHome, null, null, resources)
+            it?.let {
+                    resourceStats -> when(resourceStats.states){
+                        MyStates.IS_SUCCESS ->{
+                            resourceStats.data?.let { users ->
+                                if (!users.isNullOrEmpty()){
+                                    showStates.onSuccess(bindingHome, null)
+                                    homeAdapter.setUserData(users)
+                                }else{
+                                    showStates.onError(bindingHome, null, null, resources)
+                                }
                             }
                         }
+                        MyStates.IS_LOADING -> {
+                            showStates.onLoading(bindingHome, null)
+                        }
+                        MyStates.IS_ERROR -> {
+                            showStates.onError(bindingHome, null, it.message, resources)
+                        }
                     }
-                MyStates.IS_LOADING -> {
-                    showStates.onLoading(bindingHome, null)
-                    Log.d("OBSERVE HOME", "loading state")
-                }
-                MyStates.IS_ERROR -> {
-                    showStates.onError(bindingHome, null, it.message, resources)
-                    Log.d("OBSERVE HOME", "Error Stats")
-                }
-                }
             }
         })
-        Log.d("OBSERVE HOME", "finnish")
     }
 
     companion object{

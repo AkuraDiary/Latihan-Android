@@ -31,7 +31,7 @@ class SplashscreenActivity : AppCompatActivity() {
             override fun run(){
                 try{
                     /* do some code here while loading */
-                    sleep(3000)
+                    sleep(2000)
                     // continue to the next activity
                     val intent = Intent(this@SplashscreenActivity, MainActivity::class.java)
                     startActivity(intent)

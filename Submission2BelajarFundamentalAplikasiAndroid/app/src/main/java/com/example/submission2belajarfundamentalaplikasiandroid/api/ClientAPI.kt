@@ -5,24 +5,24 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiClient {
+interface ClientAPI {
     @GET("search/users")
     suspend fun searchForUsers(
         @Query("q") q: String?
-    ): SearchRespond
+    ): SearchResultResponds
 
     @GET("users/{username}")
-    suspend fun userDetails(
+    suspend fun setUserDetails(
         @Path("username") username: String?
     ): User
 
     @GET("users/{username}/followers")
-    suspend fun userFollowers(
+    suspend fun getUserFollowers(
         @Path("username") username:String?
     ): List<User>
 
     @GET("users/{username}/following")
-    suspend fun userFollowings(
+    suspend fun getUserFollowings(
         @Path("username") username:String?
     ): List<User>
 }

@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
-        //navController = findNavController(R.id.nav_host_fragment_container)
 
         appBarrConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarrConfiguration)

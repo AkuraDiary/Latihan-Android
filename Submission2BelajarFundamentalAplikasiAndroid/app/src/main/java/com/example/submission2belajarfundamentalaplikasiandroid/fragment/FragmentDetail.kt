@@ -1,7 +1,6 @@
 package com.example.submission2belajarfundamentalaplikasiandroid.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,14 +23,11 @@ class FragmentDetail : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("Detail Fragment on Create", args.toString())
-        detailVM.setDetail(args.username)
+        detailVM.setForDetails(args.username)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         bindingDetail = FragmentDetailBinding.inflate(layoutInflater, container, false)
         bindingDetail.lifecycleOwner = viewLifecycleOwner
 
@@ -71,8 +67,12 @@ class FragmentDetail : Fragment() {
         fragment : Fragment
     ): FragmentStateAdapter(fragment){
 
-        override fun getItemCount(): Int { return tabList.size }
+        override fun getItemCount(): Int {
+            return tabList.size
+        }
 
-        override fun createFragment(position: Int): Fragment { return FragmentFollow.newInstance(username, tabList[position]) }
+        override fun createFragment(position: Int): Fragment {
+            return FragmentFollow.newInstance(username, tabList[position])
+        }
     }
 }

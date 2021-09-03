@@ -6,13 +6,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class User(
     //nama variablenya harus sama dengan fieldnya di link api nya (kalau tidak datanya ngga masuk)
-    var id : Int,
-    var login : String,
-    var avatar_url: String,
-    var name: String?,
-    var location: String?,
-    var type: String?,
-    var public_repos: Int,
-    var followers: Int,
-    var following : Int
+    val id : Int,
+    val login : String,
+    val avatar_url: String,
+    val name: String?,
+    val location: String?,
+    val type: String?,
+    val public_repos: Int,
+    val followers: Int,
+    val following : Int
 ):Parcelable

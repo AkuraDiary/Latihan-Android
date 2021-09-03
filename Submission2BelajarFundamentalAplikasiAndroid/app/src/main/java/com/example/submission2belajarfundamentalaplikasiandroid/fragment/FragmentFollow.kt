@@ -34,13 +34,11 @@ class FragmentFollow : Fragment(){
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         bindingFollow = FragmentFollowBinding.inflate(layoutInflater, container, false)
         return bindingFollow.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,9 +53,8 @@ class FragmentFollow : Fragment(){
             adapter = userAdapter
         }
 
-        followVM = ViewModelProvider(
-            this, ViewModelProvider.NewInstanceFactory()
-        ).get(FollowVM::class.java)
+        followVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
+            .get(FollowVM::class.java)
 
         when(type){
             resources.getString(R.string.txt_folowing)->followVM.setFollows(username, FollowView.FOLLOWINGS)
@@ -73,13 +70,11 @@ class FragmentFollow : Fragment(){
                 MyStates.IS_SUCCESS ->
                     if(!it.data.isNullOrEmpty()){
                         showStates.onSuccess(null, bindingFollow)
-                        userAdapter.run{setData(it.data)}
+                        userAdapter.run{setUserData(it.data)}
                     }else{
-                        //val stringRes = resources.getString(R.string.kosong, username, type)
 
                         showStates.onError(null,
                             bindingFollow,
-                            //stringRes,
                             resources.getString(R.string.kosong, username, type),
                             resources)
                     }
@@ -90,13 +85,13 @@ class FragmentFollow : Fragment(){
     }
 
     companion object{
-        fun newInstance(username: String, type: String)=
-            FragmentFollow().apply{
-                arguments = Bundle().apply{
-                    putString(USERNAME, username)
-                    putString(TYPE, type)
-                }
+        fun newInstance(username: String, type: String)= FragmentFollow().apply{
+            arguments = Bundle().apply{
+                putString(USERNAME, username)
+                putString(TYPE, type)
             }
+        }
+
         const val followStateId = 2
         private const val TYPE = "type"
         private const val USERNAME = "username"
