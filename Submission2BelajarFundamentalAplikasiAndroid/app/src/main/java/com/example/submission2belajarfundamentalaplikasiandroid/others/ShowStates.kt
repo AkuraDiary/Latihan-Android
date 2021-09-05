@@ -47,7 +47,7 @@ class ShowStates(private val Id: Int) {
                 homeViewBinding?.recyclerHome?.visibility = View.GONE
             }
             2 -> {
-                followViewBinding?.errorLayout?.emptyText?.text = Message?: res.getString(R.string.user_not_found)
+                followViewBinding?.errorLayout?.emptyText?.text = Message?: res.getString(R.string.kosong)
                 followViewBinding?.errorLayout?.mainNotFound?.visibility = View.VISIBLE
                 followViewBinding?.followProgress?.visibility = View.GONE
                 followViewBinding?.followRecycler?.visibility = View.GONE

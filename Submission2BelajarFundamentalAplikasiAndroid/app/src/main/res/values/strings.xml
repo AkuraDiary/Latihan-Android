@@ -21,6 +21,7 @@
     <string name="pubRepo_placeholder" translatable="false">0</string>
     <string name="follower_placeholder" translatable="false">1</string>
     <string name="following_placeholder" translatable="false">2</string>
+    <string name="company_placeholder" translatable="false">Company</string>
 
 
 </resources>
