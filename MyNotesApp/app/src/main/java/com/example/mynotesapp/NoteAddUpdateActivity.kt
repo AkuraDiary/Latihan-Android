@@ -131,8 +131,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         alertDialog.show()
     }
 
-    override fun onClick(view: View?) {
-        if(view?.id == R.id.btn_submit){
+    override fun onClick(view: View) {
+        if(view.id == R.id.btn_submit){
             val title = binding.edtTitle.text.toString().trim()
             val description = binding.edtDescription.text.toString().trim()
 

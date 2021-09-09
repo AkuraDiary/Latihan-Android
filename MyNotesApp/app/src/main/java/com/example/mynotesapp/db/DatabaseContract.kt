@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 
-internal class DatabaseContract {
+class DatabaseContract {
     internal class NoteColumns : BaseColumns{
         companion object{
             const val TABLE_NAME = "note"
