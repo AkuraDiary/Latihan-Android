@@ -46,6 +46,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadNotesAsync()
+    }
+
     private fun loadNotesAsync() {
         GlobalScope.launch(Dispatchers.Main) {
             binding.progressbar.visibility = View.VISIBLE
@@ -53,20 +58,19 @@ class MainActivity : AppCompatActivity() {
 
             noteHelper.open()
 
-            val deferredNotes = async(Dispatchers.Default) {
+            val deferredNotes = async(Dispatchers.IO) {
                 val cursor = noteHelper.queryAll()
                 MappingHelper.mapCursorToArrayList(cursor)
             }
-
             binding.progressbar.visibility = View.INVISIBLE
             val notes = deferredNotes.await()
+            noteHelper.close()
             if (notes.size > 0) {
                 adapter.listNotes = notes
             } else {
                 adapter.listNotes = ArrayList()
                 showSnackbarMessage("Tidak ada data saat ini")
             }
-            noteHelper.close()
         }
     }
 
