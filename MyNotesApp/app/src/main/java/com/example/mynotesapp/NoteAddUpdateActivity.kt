@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -132,7 +133,9 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
+
         if(view.id == R.id.btn_submit){
+            Log.d("submit click", "SUBMIT 1")
             val title = binding.edtTitle.text.toString().trim()
             val description = binding.edtDescription.text.toString().trim()
 
@@ -151,6 +154,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             val values = ContentValues()
             values.put(DatabaseContract.NoteColumns.TITLE, title)
             values.put(DatabaseContract.NoteColumns.DESCRIPTION, description)
+            Log.d("submit click", "SUBMIT 2")
 
             if (isEdit) {
                 val result = noteHelper.update(note?.id.toString(), values).toLong()
@@ -164,6 +168,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 note?.date = getCurrentDate()
                 values.put(DATE, getCurrentDate())
                 val result = noteHelper.insert(values)
+
                 if (result > 0) {
                     note?.id = result.toInt()
                     setResult(RESULT_ADD, intent)
@@ -172,6 +177,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this@NoteAddUpdateActivity, "Gagal menambah data", Toast.LENGTH_SHORT).show()
                 }
             }
+            Log.d("submit click", "SUBMIT")
         }
     }
 }
