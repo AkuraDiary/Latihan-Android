@@ -1,16 +1,15 @@
-package com.example.mynotesapp
+package com.example.mynotesapp.db
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.example.mynotesapp.db.DatabaseContract
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.TABLE_NAME
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion._ID
 import java.sql.SQLException
 
 class NoteHelper(context: Context) {
-    private var dataBaseHelper: DatabaseContract.Databasehelper = DatabaseContract.Databasehelper(context)
+    private var dataBaseHelper: DatabaseHelper = DatabaseHelper(context)
     private lateinit var database:SQLiteDatabase
 
     @Throws(SQLException::class)
@@ -21,8 +20,9 @@ class NoteHelper(context: Context) {
     fun close(){
         dataBaseHelper.close()
 
-        if(database.isOpen)
+        if(database.isOpen){
             database.close()
+        }
     }
 
     fun queryAll(): Cursor {
@@ -66,7 +66,7 @@ class NoteHelper(context: Context) {
         private const val DATABASE_TABLE = TABLE_NAME
 
         private var INSTANCE: NoteHelper? = null
-        fun getInstance(context: Context):NoteHelper=
+        fun getInstance(context: Context): NoteHelper =
             INSTANCE ?: synchronized(this){
                 INSTANCE ?: NoteHelper(context)
             }

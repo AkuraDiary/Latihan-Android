@@ -7,6 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mynotesapp.adapter.NoteAdapter
 import com.example.mynotesapp.databinding.ActivityMainBinding
+import com.example.mynotesapp.db.NoteHelper
 import com.example.mynotesapp.helper.MappingHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -58,10 +59,11 @@ class MainActivity : AppCompatActivity() {
 
             noteHelper.open()
 
-            val deferredNotes = async(Dispatchers.Default) {
+            val deferredNotes = async(Dispatchers.IO) {
                 val cursor = noteHelper.queryAll()
                 MappingHelper.mapCursorToArrayList(cursor)
             }
+
 
             binding.progressbar.visibility = View.INVISIBLE
             val notes = deferredNotes.await()

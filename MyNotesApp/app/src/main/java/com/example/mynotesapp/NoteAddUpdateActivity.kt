@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.mynotesapp.databinding.ActivityNoteAddUpdateBinding
 import com.example.mynotesapp.db.DatabaseContract
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DATE
+import com.example.mynotesapp.db.NoteHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +29,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //setUserTypeOnButtonClick()
 
         noteHelper = NoteHelper.getInstance(applicationContext)
         noteHelper.open()
@@ -133,7 +136,6 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-
         if(view.id == R.id.btn_submit){
             Log.d("submit click", "SUBMIT 1")
             val title = binding.edtTitle.text.toString().trim()
