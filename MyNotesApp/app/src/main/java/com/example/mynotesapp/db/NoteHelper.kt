@@ -4,13 +4,29 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.example.mynotesapp.Note
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.TABLE_NAME
 import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion._ID
+import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DATE
+import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.TITLE
+import com.example.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DESCRIPTION
 import java.sql.SQLException
 
 class NoteHelper(context: Context) {
+
     private var dataBaseHelper: DatabaseHelper = DatabaseHelper(context)
     private lateinit var database:SQLiteDatabase
+
+    companion object{
+        private const val DATABASE_TABLE = TABLE_NAME
+
+        private var INSTANCE: NoteHelper? = null
+
+        fun getInstance(context: Context): NoteHelper =
+            INSTANCE ?: synchronized(this){
+                INSTANCE ?: NoteHelper(context)
+            }
+    }
 
     @Throws(SQLException::class)
     fun open(){
@@ -62,13 +78,71 @@ class NoteHelper(context: Context) {
         return database.delete(DATABASE_TABLE, "$_ID ='$id'", null )
     }
 
-    companion object{
-        private const val DATABASE_TABLE = TABLE_NAME
+    /**
+     * Gunakan method ini untuk ambil semua note yang ada
+     * Otomatis di parsing ke dalam model Note
+     *
+     * @return hasil getGetAllNotes berbentuk array model note
+     */
+    fun getAllNotes(): ArrayList<Note> {
+        val arrayList = ArrayList<Note>()
+        val cursor = database.query(DATABASE_TABLE, null, null, null, null, null,
+            "$_ID ASC", null)
+        cursor.moveToFirst()
+        var note: Note
+        if (cursor.count > 0) {
+            do {
+                note = Note()
+                note.id = cursor.getInt(cursor.getColumnIndexOrThrow(_ID))
+                note.title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE))
+                note.description = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION))
+                note.date = cursor.getString(cursor.getColumnIndexOrThrow(DATE))
 
-        private var INSTANCE: NoteHelper? = null
-        fun getInstance(context: Context): NoteHelper =
-            INSTANCE ?: synchronized(this){
-                INSTANCE ?: NoteHelper(context)
-            }
+                arrayList.add(note)
+                cursor.moveToNext()
+
+            } while (!cursor.isAfterLast)
+        }
+        cursor.close()
+        return arrayList
+    }
+
+    /**
+     * Gunakan method ini untuk insertNote
+     *
+     * @param note model note yang akan dimasukkan
+     * @return id dari data yang baru saja dimasukkan
+     */
+    fun insertNote(note: Note): Long {
+        val args = ContentValues()
+        args.put(TITLE, note.title)
+        args.put(DESCRIPTION, note.description)
+        args.put(DATE, note.date)
+        return database.insert(DATABASE_TABLE, null, args)
+    }
+
+
+    /**
+     * Gunakan method ini untuk updateNote
+     *
+     * @param note model note yang akan diubah
+     * @return int jumlah dari row yang ter-updateNote, jika tidak ada yang diupdate maka nilainya 0
+     */
+    fun updateNote(note: Note): Int {
+        val args = ContentValues()
+        args.put(TITLE, note.title)
+        args.put(DESCRIPTION, note.description)
+        args.put(DATE, note.date)
+        return database.update(DATABASE_TABLE, args, _ID + "= '" + note.id + "'", null)
+    }
+
+    /**
+     * Gunakan method ini untuk deleteNote
+     *
+     * @param id id yang akan di deleteNote
+     * @return int jumlah row yang di deleteNote
+     */
+    fun deleteNote(id: Int): Int {
+        return database.delete(TABLE_NAME, "$_ID = '$id'", null)
     }
 }

@@ -7,6 +7,7 @@ import com.example.mynotesapp.db.DatabaseContract
 object MappingHelper {
     fun mapCursorToArrayList(notesCursor: Cursor?): ArrayList<Note> {
         val notesList = ArrayList<Note>()
+
         notesCursor?.apply {
             while (moveToNext()) {
                 val id = getInt(getColumnIndexOrThrow(DatabaseContract.NoteColumns._ID))

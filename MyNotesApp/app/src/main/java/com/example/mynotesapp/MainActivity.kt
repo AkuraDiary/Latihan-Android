@@ -64,10 +64,11 @@ class MainActivity : AppCompatActivity() {
                 MappingHelper.mapCursorToArrayList(cursor)
             }
 
-
             binding.progressbar.visibility = View.INVISIBLE
             val notes = deferredNotes.await()
+
             noteHelper.close()
+
             if (notes.size > 0) {
                 adapter.listNotes = notes
             } else {
@@ -83,26 +84,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (data != null) {
             when (requestCode) {
                 NoteAddUpdateActivity.REQUEST_ADD -> if (resultCode == NoteAddUpdateActivity.RESULT_ADD) {
                     val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE) as Note
+
                     adapter.addItem(note)
                     binding.rvNotes.smoothScrollToPosition(adapter.itemCount - 1)
+
                     showSnackbarMessage("Satu item berhasil ditambahkan")
                 }
                 NoteAddUpdateActivity.REQUEST_UPDATE ->
                     when (resultCode) {
                         NoteAddUpdateActivity.RESULT_UPDATE -> {
+
                             val note = data.getParcelableExtra<Note>(NoteAddUpdateActivity.EXTRA_NOTE) as Note
                             val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
+
                             adapter.updateItem(position, note)
                             binding.rvNotes.smoothScrollToPosition(position)
+
                             showSnackbarMessage("Satu item berhasil diubah")
                         }
                         NoteAddUpdateActivity.RESULT_DELETE -> {
                             val position = data.getIntExtra(NoteAddUpdateActivity.EXTRA_POSITION, 0)
+
                             adapter.removeItem(position)
+
                             showSnackbarMessage("Satu item berhasil dihapus")
                         }
                     }

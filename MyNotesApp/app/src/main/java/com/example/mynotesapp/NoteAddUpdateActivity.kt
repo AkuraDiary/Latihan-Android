@@ -30,8 +30,6 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //setUserTypeOnButtonClick()
-
         noteHelper = NoteHelper.getInstance(applicationContext)
         noteHelper.open()
 
@@ -57,9 +55,13 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             actionBarTitle = "Tambah"
             btnTitle = "Simpan"
         }
+
         supportActionBar?.title = actionBarTitle
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.btnSubmit.text = btnTitle
+
+        binding.btnSubmit.setOnClickListener(this)
     }
 
     private fun getCurrentDate(): String {
