@@ -47,7 +47,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.5.0-alpha02'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Navigation
@@ -91,16 +91,24 @@ dependencies {
     //Require Implementation
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.5.0-alpha02'
 
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation("com.squareup.moshi:moshi:1.5.0")
+
+    implementation 'androidx.room:room-ktx:2.3.0'
+    kapt "androidx.room:room-compiler:2.3.0"
 
     //rotate loading lib
     implementation 'com.victor:lib:1.0.4'
+
+    //fancy toast
+    implementation 'io.github.shashank02051997:FancyToast:2.0.1'
 
     implementation "androidx.room:room-runtime:2.3.0"
     kapt  "androidx.room:room-compiler:2.3.0"

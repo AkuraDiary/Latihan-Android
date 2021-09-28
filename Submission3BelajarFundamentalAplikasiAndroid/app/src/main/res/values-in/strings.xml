@@ -8,4 +8,9 @@
     <string name="user_not_found">tidak dapat menemukan pengguna</string>
     <string name="deskripsi_img_github">logo github</string>
     <string name="kosong">%1$ Tidak Punya %2$s</string>
+    <string name="favorite_remove">%s dihapus dari favorite</string>
+    <string name="favorite_add">%s dtiambahkan ke favorite</string>
+    <string name="home">Beranda</string>
+    <string name="favorite">Favorit</string>
+    <string name="settings">Pengaturan</string>
 </resources>

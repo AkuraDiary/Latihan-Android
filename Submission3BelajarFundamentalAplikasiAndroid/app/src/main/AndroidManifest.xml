@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission3BelajarFundamentalAplikasiAndroid">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.submission3belajarfundamentalaplikasiandroid.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".activities.SplashscreenActivity"
+            android:name="com.example.submission3belajarfundamentalaplikasiandroid.ui.activities.SplashscreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

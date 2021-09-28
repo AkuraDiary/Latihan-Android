@@ -1,4 +1,4 @@
-package com.example.submission3belajarfundamentalaplikasiandroid.adapter
+package com.example.submission3belajarfundamentalaplikasiandroid.ui.adapter
 
 
 import android.annotation.SuppressLint

@@ -3,7 +3,7 @@ package com.example.submission3belajarfundamentalaplikasiandroid.api
 import com.example.submission3belajarfundamentalaplikasiandroid.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitConfiguration {
@@ -30,8 +30,7 @@ object RetrofitConfiguration {
         Retrofit.Builder()
             .baseUrl(GITHUB_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
     }
 
     val CLIENT_API : ClientAPI by lazy{

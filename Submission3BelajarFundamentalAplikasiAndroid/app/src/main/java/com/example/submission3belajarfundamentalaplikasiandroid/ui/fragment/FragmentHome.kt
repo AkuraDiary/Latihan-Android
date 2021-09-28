@@ -1,4 +1,4 @@
-package com.example.submission3belajarfundamentalaplikasiandroid.fragment
+package com.example.submission3belajarfundamentalaplikasiandroid.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,21 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission3belajarfundamentalaplikasiandroid.R
-import com.example.submission3belajarfundamentalaplikasiandroid.adapter.UserAdapter
+import com.example.submission3belajarfundamentalaplikasiandroid.ui.adapter.UserAdapter
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
 import com.example.submission3belajarfundamentalaplikasiandroid.others.MyStates
+import com.example.submission3belajarfundamentalaplikasiandroid.others.OldShowStates
 import com.example.submission3belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission3belajarfundamentalaplikasiandroid.view_model.HomeVM
 
-class FragmentHome: Fragment() {
+class FragmentHome: Fragment(), ShowStates {
 
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var homeAdapter : UserAdapter
-    private lateinit var homeVM : HomeVM
-    private var showStates = ShowStates(homeStateId)
-
+    private val homeVM : HomeVM by navGraphViewModels(R.id.my_nav)
+    //private var showStates = ShowStates(homeStateId)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:Bundle?): View{
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
@@ -33,11 +34,12 @@ class FragmentHome: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-
-        homeVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(HomeVM::class.java)
-
+        setHasOptionsMenu(true)
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
+
+        /*homeVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
+            .get(HomeVM::class.java)*/
+
 
         homeAdapter = UserAdapter(arrayListOf()){ username, iv ->
             findNavController().navigate(FragmentHomeDirections.detailsAction(username),
@@ -77,25 +79,60 @@ class FragmentHome: Fragment() {
                         MyStates.IS_SUCCESS ->{
                             resourceStats.data?.let { users ->
                                 if (!users.isNullOrEmpty()){
-                                    showStates.onSuccess(bindingHome, null)
+                                    homeSuccess(bindingHome)
+                                    //ShowStates.onSuccess(bindingHome, null)
                                     homeAdapter.setUserData(users)
                                 }else{
-                                    showStates.onError(bindingHome, null, null, resources)
+                                    homeError(bindingHome, null)
+                                    //showStates.onError(bindingHome, null, null, resources)
                                 }
                             }
                         }
                         MyStates.IS_LOADING -> {
-                            showStates.onLoading(bindingHome, null)
+                            homeLoading(bindingHome)
+                            //showStates.onLoading(bindingHome, null)
                         }
                         MyStates.IS_ERROR -> {
-                            showStates.onError(bindingHome, null, it.message, resources)
+                            homeError(bindingHome, it.message)
+                            //showStates.onError(bindingHome, null, it.message, resources)
                         }
                     }
             }
         })
     }
 
-    companion object{
-        const val homeStateId = 1
+    override fun homeLoading(bindingHome: FragmentHomeBinding): Int? {
+        bindingHome.apply {
+            errorLayout.mainNotFound.visibility = gone
+            progress.start()
+            progress.loadingColor = R.color.design_default_color_on_secondary
+            recyclerHome.visibility = gone
+        }
+        return super.homeLoading(bindingHome)
     }
+
+    override fun homeSuccess(bindingHome: FragmentHomeBinding): Int? {
+        bindingHome.apply {
+            errorLayout.mainNotFound.visibility = gone
+            progress.stop()
+            recyclerHome.visibility = visible
+        }
+        return super.homeSuccess(bindingHome)
+    }
+
+    override fun homeError(bindingHome: FragmentHomeBinding, message: String?): Int? {
+        bindingHome.apply {
+            errorLayout.apply {
+                mainNotFound.visibility = visible
+                emptyText.text = message ?: resources.getString(R.string.user_not_found)
+            }
+            progress.stop()
+            recyclerHome.visibility = gone
+        }
+        return super.homeError(bindingHome, message)
+    }
+
+    /*companion object{
+        const val homeStateId = 1
+    }*/
 }

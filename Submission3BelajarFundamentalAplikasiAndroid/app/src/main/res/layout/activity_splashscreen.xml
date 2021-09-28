@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/black"
-    tools:context=".activities.SplashscreenActivity">
+    tools:context=".ui.activities.SplashscreenActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="@color/white"
             android:textSize="48sp"
             android:fontFamily="@font/poppins_bold"
             android:textStyle="bold" />

@@ -1,4 +1,4 @@
-package com.example.submission3belajarfundamentalaplikasiandroid.fragment
+package com.example.submission3belajarfundamentalaplikasiandroid.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission3belajarfundamentalaplikasiandroid.R
-import com.example.submission3belajarfundamentalaplikasiandroid.adapter.UserAdapter
+import com.example.submission3belajarfundamentalaplikasiandroid.ui.adapter.UserAdapter
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.FragmentFollowBinding
 import com.example.submission3belajarfundamentalaplikasiandroid.others.FollowView
 import com.example.submission3belajarfundamentalaplikasiandroid.others.MyStates
@@ -17,14 +17,14 @@ import com.example.submission3belajarfundamentalaplikasiandroid.others.ShowState
 import com.example.submission3belajarfundamentalaplikasiandroid.view_model.FollowVM
 
 
-class FragmentFollow : Fragment(){
+class FragmentFollow : Fragment(), ShowStates{
 
     private lateinit var bindingFollow: FragmentFollowBinding
     private lateinit var userAdapter : UserAdapter
     private lateinit var followVM : FollowVM
     private lateinit var username:String
     private var type: String? = null
-    private var showStates = ShowStates(followStateId)
+    //private var showStates = OldShowStates(followStateId)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,8 @@ class FragmentFollow : Fragment(){
         when(type){
             resources.getString(R.string.txt_folowing)->followVM.setFollows(username, FollowView.FOLLOWINGS)
             resources.getString(R.string.txt_folower)->followVM.setFollows(username, FollowView.FOLLOWERS)
-            else -> showStates.onError(null, bindingFollow, null, resources)
+            else -> followError(bindingFollow, null)
+            //else -> showStates.onError(null, bindingFollow, null, resources)
         }
         observeFollow()
     }
@@ -69,19 +70,52 @@ class FragmentFollow : Fragment(){
             when(it.states){
                 MyStates.IS_SUCCESS ->
                     if(!it.data.isNullOrEmpty()){
-                        showStates.onSuccess(null, bindingFollow)
+                        followSuccess(bindingFollow)
+                        //showStates.onSuccess(null, bindingFollow)
                         userAdapter.run{setUserData(it.data)}
                     }else{
 
-                        showStates.onError(null,
+                        /*showStates.onError(null,
                             bindingFollow,
                             resources.getString(R.string.kosong, username, type),
-                            resources)
+                            resources)*/
+                        followError(bindingFollow, resources.getString(R.string.kosong, username, type))
                     }
-                MyStates.IS_LOADING -> showStates.onLoading(null, bindingFollow)
-                MyStates.IS_ERROR -> showStates.onError(null, bindingFollow, it.message, resources)
+                MyStates.IS_LOADING -> followLoading(bindingFollow)//showStates.onLoading(null, bindingFollow)
+                MyStates.IS_ERROR -> followError(bindingFollow, it.message)//showStates.onError(null, bindingFollow, it.message, resources)
             }
         })
+    }
+
+    override fun followLoading(followBinding: FragmentFollowBinding): Int? {
+        followBinding.apply {
+            errorLayout.mainNotFound.visibility = gone
+            progress.start()
+            progress.loadingColor = R.color.design_default_color_on_secondary
+            followRecycler.visibility = gone
+        }
+        return super.followLoading(followBinding)
+    }
+
+    override fun followSuccess(bindingFollow: FragmentFollowBinding): Int? {
+        bindingFollow.apply {
+            errorLayout.mainNotFound.visibility = gone
+            progress.stop()
+            followRecycler.visibility = visible
+        }
+        return super.followSuccess(bindingFollow)
+    }
+
+    override fun followError(followBinding: FragmentFollowBinding, message: String?): Int? {
+        followBinding.apply {
+            errorLayout.apply {
+                mainNotFound.visibility = visible
+                emptyText.text = message ?: resources.getString(R.string.kosong)
+            }
+            progress.stop()
+            followRecycler.visibility = gone
+        }
+        return super.followError(followBinding, message)
     }
 
     companion object{

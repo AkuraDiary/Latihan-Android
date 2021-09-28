@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.submission3belajarfundamentalaplikasiandroid.api.UserRetrofit
+import com.example.submission3belajarfundamentalaplikasiandroid.data.UserRepos
 import com.example.submission3belajarfundamentalaplikasiandroid.others.FollowView
 import com.example.submission3belajarfundamentalaplikasiandroid.others.ResourceStats
 import com.example.submission3belajarfundamentalaplikasiandroid.user.User
@@ -18,7 +19,7 @@ class FollowVM : ViewModel(){
         .switchMap(userUsername){
             when(type){
                 FollowView.FOLLOWERS -> {
-                    UserRetrofit.getUserFollowers(it)
+                    UserRepos.getUserFollowers(it)
                 }
 
                 FollowView.FOLLOWINGS-> {

@@ -1,4 +1,4 @@
-package com.example.submission3belajarfundamentalaplikasiandroid.activities
+package com.example.submission3belajarfundamentalaplikasiandroid.ui.activities
 
 import android.animation.ObjectAnimator
 import android.content.Intent

@@ -14,9 +14,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
         android:layout_marginTop="8dp"
-        android:shadowColor="@color/black"
-        app:cardBackgroundColor="@color/card_color">
+        style="@style/CardView.Light">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@drawable/ic_user_24"
-                app:avatar="@{data.avatar_url}"/>
+                app:avatar="@{data.avatarUrl}"/>
 
             <TextView
                 android:id="@+id/list_login"
@@ -43,7 +43,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@{data.login}"
                 android:textSize="18sp"
-                android:textColor="@android:color/white"
+
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-condensed"
                 app:layout_constraintStart_toEndOf="@+id/list_avatarUrl"
