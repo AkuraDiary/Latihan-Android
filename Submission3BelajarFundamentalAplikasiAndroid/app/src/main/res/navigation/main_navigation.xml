@@ -24,9 +24,9 @@
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
+        <!--<action
             android:id="@+id/action_home_destination_to_settings_destination"
-            app:destination="@id/settings_destination" />
+            app:destination="@id/settings_destination" />-->
 
     </fragment>
     <fragment
@@ -57,9 +57,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
     </fragment>
-    <fragment
+    <!--<fragment
         android:id="@+id/settings_destination"
-        android:name="com.example.submission3belajarfundamentalaplikasiandroid.ui.fragment.FragmentSetting"
-        android:label="SettingsFragment"/>
+        android:name="com.example.submission3belajarfundamentalaplikasiandroid.ui.activities.SettingActivity"
+        android:label="SettingsFragment"/>-->
 
 </navigation>

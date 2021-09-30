@@ -2,9 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_setting"
+        android:id="@+id/menu_lang_setting"
         android:title="@string/lang_settings"
         android:icon="@drawable/ic_language_24"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_theme_settings"
+        android:title="@string/theme_settings"
+        android:icon="@drawable/ic_settings_theme"
+        app:showAsAction="ifRoom"/>
 
 </menu>

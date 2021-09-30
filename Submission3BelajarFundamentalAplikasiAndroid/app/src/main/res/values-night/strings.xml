@@ -29,5 +29,6 @@
     <string name="favorite_remove">%s removed from favorite</string>
     <string name="favorite_add">%s added favorite</string>
     <string name="dark_mode">dark mode</string>
+    <string name="theme_settings">themes setting</string>
 
 </resources>

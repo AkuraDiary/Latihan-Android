@@ -7,9 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -17,7 +15,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.submission3belajarfundamentalaplikasiandroid.R
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.ActivityMainBinding
-import com.example.submission3belajarfundamentalaplikasiandroid.view_model.DetailsVM
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,8 +61,11 @@ class MainActivity : AppCompatActivity() {
 
     //menuju pengaturan bahasa
     override fun onOptionsItemSelected(item:MenuItem): Boolean{
-        if(item.itemId == R.id.menu_setting){
+        if(item.itemId == R.id.menu_lang_setting){
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+        }else if(item.itemId == R.id.menu_theme_settings){
+            val intent = Intent(this@MainActivity, SettingActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
