@@ -1,6 +1,7 @@
 package com.example.submission3belajarfundamentalaplikasiandroid.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,6 @@ class FragmentDetail : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //detailVM.setForDetails(args.username)
         detailVM = ViewModelProvider(
             this
         ).get(DetailsVM::class.java)
@@ -49,6 +49,7 @@ class FragmentDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingDetail.contentDetailHolder.transitionName = args.username
+        bindingDetail.btnFavorite.setOnClickListener { addOrRemoveFavorite() }
 
         val tabList = arrayOf(
             resources.getString(R.string.txt_folower),
@@ -60,19 +61,20 @@ class FragmentDetail : Fragment() {
         TabLayoutMediator(bindingDetail.tabs, bindingDetail.pager) { tab, position ->
             tab.text = tabList[position]
         }.attach()
-
     }
 
     private fun observeDetail() {
-        detailVM.data(args.username).observe(viewLifecycleOwner, Observer {
+        detailVM.data(args.username).observe(viewLifecycleOwner, {
             if(it.states == MyStates.IS_SUCCESS){
                 user = it.data!!
                 bindingDetail.userData = it.data
             }
         })
 
-        detailVM.isFavorite.observe(viewLifecycleOwner, Observer {
+        detailVM.isFavorite.observe(viewLifecycleOwner, {
+            Log.d("observe it : ", it.toString())
             isFavorite = it
+            Log.d("isFavorit : ", isFavorite.toString())
             changeFavorite(it)
         })
 
@@ -84,6 +86,7 @@ class FragmentDetail : Fragment() {
     }
 
     private fun addOrRemoveFavorite(){
+        Log.d("add or Remove !isFavorite value : ", (!isFavorite).toString())
         if (!isFavorite){
             detailVM.addFavorite(user)
             FancyToast.makeText(
@@ -98,6 +101,7 @@ class FragmentDetail : Fragment() {
     }
 
     private fun changeFavorite(condition: Boolean){
+        Log.d("change fav : ", condition.toString())
         if (condition){
             bindingDetail.btnFavorite.setImageResource(R.drawable.ic_favorite_bottom_nav)
         } else {

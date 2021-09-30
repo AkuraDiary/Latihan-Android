@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission3belajarfundamentalaplikasiandroid.R
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.FragmentFavoriteBinding
 import com.example.submission3belajarfundamentalaplikasiandroid.others.ShowStates
@@ -30,9 +33,26 @@ class FragmentFavorite : Fragment(), ShowStates {
         return bindingFavorite.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        favoriteAdapter = UserAdapter(arrayListOf()) { username, iv ->
+            findNavController().navigate(
+                FragmentFavoriteDirections.actionFavoriteFragmentToDetailsDestination(username),
+                FragmentNavigatorExtras(iv to username)
+            )
+        }
+
+        bindingFavorite.recyclerFav.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = favoriteAdapter
+        }
+
+        observeFavorite()
+    }
+
     private fun observeFavorite() {
         favoriteLoading(bindingFavorite)
-        favoriteViewModel.favData.observe(viewLifecycleOwner, Observer {
+        favoriteViewModel.favData.observe(viewLifecycleOwner, {
             it?.let { users ->
                 if (!users.isNullOrEmpty()){
                     favoriteSuccess(bindingFavorite)
@@ -60,6 +80,7 @@ class FragmentFavorite : Fragment(), ShowStates {
         bindingFavorite.apply {
             favErrorlayout.mainNotFound.visibility = gone
             progress.stop()
+            recyclerFav.visibility = visible
         }
         return super.favoriteSuccess(bindingFavorite)
     }

@@ -1,5 +1,6 @@
 package com.example.submission3belajarfundamentalaplikasiandroid.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -10,7 +11,7 @@ import com.example.submission3belajarfundamentalaplikasiandroid.user.User
 import kotlinx.coroutines.Dispatchers
 
 class UserFavoriteRepos(private val userDao: UserDao) {
-    private val favorite: MutableLiveData<Boolean> = MutableLiveData()
+    private var favorite: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getDetailUser(username:String) = liveData(Dispatchers.IO){
         emit(ResourceStats.onLoading(null))
@@ -27,16 +28,19 @@ class UserFavoriteRepos(private val userDao: UserDao) {
             }
         }
     }
+
     suspend fun insert(user: User){
+        Log.d("insert user before : ", favorite.value.toString())
         userDao.insertUser(user)
         favorite.value = true
+        Log.d("insert user after : ", favorite.value.toString())
     }
 
     suspend fun delete(user: User){
+        Log.d("delete user before : ", favorite.value.toString())
         userDao.deleteUser(user)
         favorite.value = false
+        Log.d("delete user after : ", favorite.value.toString())
     }
-
     val isFavorite: LiveData<Boolean> = favorite
-
 }

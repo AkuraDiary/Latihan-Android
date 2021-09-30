@@ -23,7 +23,7 @@ class FollowVM : ViewModel(){
                 }
 
                 FollowView.FOLLOWINGS-> {
-                    UserRetrofit.getUserFollowing(it)
+                    UserRepos.getUserFollowing(it)
                 }
             }
         }

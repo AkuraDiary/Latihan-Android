@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        //navController = findNavController(R.id.nav_host_fragment_container)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavView, navController)
@@ -46,9 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
         setupActionBarWithNavController(navController, appBarConfiguration)
         //setupActionBarWithNavController(navController, appBarrConfiguration)
-
         /*ViewModelProvider(this).get(DetailsVM::class.java)//inisialisasi detail vm*/
-
     }
 
 
@@ -57,17 +57,17 @@ class MainActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
     //menuju pengaturan bahasa
-    /*override fun onOptionsItemSelected(item:MenuItem): Boolean{
+    override fun onOptionsItemSelected(item:MenuItem): Boolean{
         if(item.itemId == R.id.menu_setting){
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
-    }*/
+    }
 }

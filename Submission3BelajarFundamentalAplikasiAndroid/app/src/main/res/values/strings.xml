@@ -10,7 +10,7 @@
     <string name="search_placeholderHint">Search Somebody here</string>
     <string name="user_not_found">can\'t find user</string>
     <string name="deskripsi_img_github">logo github</string>
-    <string name="kosong">%1$ Don\'t Have %2$s</string>
+    <string name="kosong">%1$s Don\'t Have %2$s</string>
 
 
     <!--string untuk placeholder / example-->
@@ -27,6 +27,7 @@
     <string name="settings">Settings</string>
     <string name="favorite_remove">%s removed from favorite</string>
     <string name="favorite_add">%s added favorite</string>
+    <string name="dark_mode">dark mode</string>
 
 
 </resources>

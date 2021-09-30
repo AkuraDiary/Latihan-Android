@@ -16,7 +16,6 @@ class DetailsVM(app : Application) : AndroidViewModel(app)  {
 
     private var userDao: UserDao = UsrDatabase.getDatabase(app).userDao()
     private var userFavoriteRepos: UserFavoriteRepos = UserFavoriteRepos(userDao)
-    val isFavorite: LiveData<Boolean> = userFavoriteRepos.isFavorite
 
     init {
         userFavoriteRepos = UserFavoriteRepos(userDao)
@@ -42,4 +41,5 @@ class DetailsVM(app : Application) : AndroidViewModel(app)  {
         }
         userUsername.value = userID
     }
+    val isFavorite: LiveData<Boolean> = userFavoriteRepos.isFavorite
 }
