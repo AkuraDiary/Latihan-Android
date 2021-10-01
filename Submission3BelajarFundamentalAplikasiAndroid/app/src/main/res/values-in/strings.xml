@@ -13,6 +13,6 @@
     <string name="home">Beranda</string>
     <string name="favorite">Favorit</string>
     <string name="settings">Pengaturan</string>
-    <string name="dark_mode">dark mode</string>
+    <string name="dark_mode">mode malam</string>
     <string name="theme_settings">themes setting</string>
 </resources>
