@@ -32,7 +32,7 @@ class SettingActivity : AppCompatActivity() {
             return weakActivity!!.get()
         }
     }*/
-
+    //creating dataStore
     private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,22 +74,5 @@ class SettingActivity : AppCompatActivity() {
         //checkTheme()
 
     }
-
-    /*fun checkTheme(){
-        settingVM.getThemeSettings().observe(this,
-            { isDarkModeActive: Boolean ->
-                if (isDarkModeActive) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    switchTheme.isChecked = true
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    switchTheme.isChecked = false
-                }
-            })
-
-        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            settingVM.saveThemeSetting(isChecked)
-        }
-    }*/
 }
 

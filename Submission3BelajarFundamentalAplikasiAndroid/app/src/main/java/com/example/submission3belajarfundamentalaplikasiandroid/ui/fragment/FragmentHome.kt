@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -15,7 +14,6 @@ import com.example.submission3belajarfundamentalaplikasiandroid.R
 import com.example.submission3belajarfundamentalaplikasiandroid.ui.adapter.UserAdapter
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.FragmentHomeBinding
 import com.example.submission3belajarfundamentalaplikasiandroid.others.MyStates
-import com.example.submission3belajarfundamentalaplikasiandroid.others.OldShowStates
 import com.example.submission3belajarfundamentalaplikasiandroid.others.ShowStates
 import com.example.submission3belajarfundamentalaplikasiandroid.view_model.HomeVM
 
@@ -80,21 +78,17 @@ class FragmentHome: Fragment(), ShowStates {
                             resourceStats.data?.let { users ->
                                 if (!users.isNullOrEmpty()){
                                     homeSuccess(bindingHome)
-                                    //ShowStates.onSuccess(bindingHome, null)
                                     homeAdapter.setUserData(users)
                                 }else{
                                     homeError(bindingHome, null)
-                                    //showStates.onError(bindingHome, null, null, resources)
                                 }
                             }
                         }
                         MyStates.IS_LOADING -> {
                             homeLoading(bindingHome)
-                            //showStates.onLoading(bindingHome, null)
                         }
                         MyStates.IS_ERROR -> {
                             homeError(bindingHome, it.message)
-                            //showStates.onError(bindingHome, null, it.message, resources)
                         }
                     }
             }
@@ -131,8 +125,4 @@ class FragmentHome: Fragment(), ShowStates {
         }
         return super.homeError(bindingHome, message)
     }
-
-    /*companion object{
-        const val homeStateId = 1
-    }*/
 }

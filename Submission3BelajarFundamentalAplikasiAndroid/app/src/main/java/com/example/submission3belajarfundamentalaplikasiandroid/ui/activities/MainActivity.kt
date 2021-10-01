@@ -1,12 +1,20 @@
 package com.example.submission3belajarfundamentalaplikasiandroid.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,7 +23,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.submission3belajarfundamentalaplikasiandroid.R
 import com.example.submission3belajarfundamentalaplikasiandroid.databinding.ActivityMainBinding
-
+import com.example.submission3belajarfundamentalaplikasiandroid.others.SettingPreferences
+import com.example.submission3belajarfundamentalaplikasiandroid.others.ViewModelFactory
+import com.example.submission3belajarfundamentalaplikasiandroid.view_model.SettingVM
+import com.google.android.material.switchmaterial.SwitchMaterial
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -46,6 +58,29 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         //setupActionBarWithNavController(navController, appBarrConfiguration)
         /*ViewModelProvider(this).get(DetailsVM::class.java)//inisialisasi detail vm*/
+
+        //untuk mengubah tema
+        //val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)!!
+
+        /*val pref = SettingPreferences.getInstance(dataStore)
+        val settingVM = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            SettingVM::class.java
+        )*/
+
+        /*switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingVM.saveThemeSetting(isChecked)
+        }*/
+
+        /*settingVM.getThemeSettings().observe(this,
+            { isDarkModeActive: Boolean ->
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    //switchTheme.isChecked = true
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    //switchTheme.isChecked = false
+                }
+            })*/
     }
 
 
