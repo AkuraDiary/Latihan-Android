@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.submission3belajarfundamentalaplikasiandroid.api.UserRetrofit
 import com.example.submission3belajarfundamentalaplikasiandroid.data.UserRepos
 import com.example.submission3belajarfundamentalaplikasiandroid.others.FollowView
 import com.example.submission3belajarfundamentalaplikasiandroid.others.ResourceStats

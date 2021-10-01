@@ -11,11 +11,9 @@ import com.example.submission3belajarfundamentalaplikasiandroid.user.User
 
 class HomeVM : ViewModel(){
     private val userUsername: MutableLiveData<String> = MutableLiveData()
-    //private lateinit var bindingHome: FragmentHomeBinding
 
     val searchResult : LiveData<ResourceStats<List<User>>> = Transformations
         .switchMap(userUsername){
-            //UserRetrofit.searchUsers(it)
             UserRepos.searchUsers(it)
         }
 

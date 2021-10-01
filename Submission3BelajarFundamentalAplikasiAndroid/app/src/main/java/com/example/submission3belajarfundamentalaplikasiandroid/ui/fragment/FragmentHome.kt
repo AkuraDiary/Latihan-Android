@@ -22,7 +22,6 @@ class FragmentHome: Fragment(), ShowStates {
     private lateinit var bindingHome: FragmentHomeBinding
     private lateinit var homeAdapter : UserAdapter
     private val homeVM : HomeVM by navGraphViewModels(R.id.my_nav)
-    //private var showStates = ShowStates(homeStateId)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:Bundle?): View{
         bindingHome = FragmentHomeBinding.inflate(layoutInflater, container, false)
@@ -34,9 +33,6 @@ class FragmentHome: Fragment(), ShowStates {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         bindingHome.errorLayout.emptyText.text = resources.getString(R.string.search_placeholderHint)
-
-        /*homeVM = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(HomeVM::class.java)*/
 
 
         homeAdapter = UserAdapter(arrayListOf()){ username, iv ->

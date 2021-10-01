@@ -1,9 +1,10 @@
 package com.example.submission3belajarfundamentalaplikasiandroid.view_model
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.bumptech.glide.load.engine.Resource
-import com.example.submission3belajarfundamentalaplikasiandroid.api.UserRetrofit
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.submission3belajarfundamentalaplikasiandroid.data.UserFavoriteRepos
 import com.example.submission3belajarfundamentalaplikasiandroid.data.local.UserDao
 import com.example.submission3belajarfundamentalaplikasiandroid.data.local.UsrDatabase
@@ -23,10 +24,7 @@ class DetailsVM(app : Application) : AndroidViewModel(app)  {
 
     fun data(username: String): LiveData<ResourceStats<User>> = userFavoriteRepos.getDetailUser(username)
 
-    /*val dataDetail : LiveData<ResourceStats<User>> = Transformations
-        .switchMap(userUsername) {
-            UserRetrofit.getUserDetail(it)
-        }*/
+
     fun addFavorite(user: User) = viewModelScope.launch {
         userFavoriteRepos.insert(user)
     }

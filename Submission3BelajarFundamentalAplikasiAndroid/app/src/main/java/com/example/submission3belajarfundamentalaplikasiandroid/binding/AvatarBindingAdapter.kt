@@ -1,5 +1,4 @@
 package com.example.submission3belajarfundamentalaplikasiandroid.binding
-
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.request.RequestOptions

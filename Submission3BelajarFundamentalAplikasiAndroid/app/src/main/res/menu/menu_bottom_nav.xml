@@ -10,8 +10,4 @@
         android:icon="@drawable/ic_favorite_bottom_nav"
         android:title="@string/favorite"/>
 
-    <!--<item
-        android:id="@+id/settings_destination"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings"/>-->
 </menu>

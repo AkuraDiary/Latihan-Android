@@ -87,14 +87,14 @@ class FragmentFollow : Fragment(), ShowStates{
         })
     }
 
-    override fun followLoading(followBinding: FragmentFollowBinding): Int? {
-        followBinding.apply {
+    override fun followLoading(bindingFollow: FragmentFollowBinding): Int? {
+        bindingFollow.apply {
             errorLayout.mainNotFound.visibility = gone
             progress.start()
             progress.loadingColor = R.color.design_default_color_on_secondary
             followRecycler.visibility = gone
         }
-        return super.followLoading(followBinding)
+        return super.followLoading(bindingFollow)
     }
 
     override fun followSuccess(bindingFollow: FragmentFollowBinding): Int? {
@@ -106,8 +106,8 @@ class FragmentFollow : Fragment(), ShowStates{
         return super.followSuccess(bindingFollow)
     }
 
-    override fun followError(followBinding: FragmentFollowBinding, message: String?): Int? {
-        followBinding.apply {
+    override fun followError(bindingFollow: FragmentFollowBinding, message: String?): Int? {
+        bindingFollow.apply {
             errorLayout.apply {
                 mainNotFound.visibility = visible
                 emptyText.text = message ?: resources.getString(R.string.kosong)
@@ -115,7 +115,7 @@ class FragmentFollow : Fragment(), ShowStates{
             progress.stop()
             followRecycler.visibility = gone
         }
-        return super.followError(followBinding, message)
+        return super.followError(bindingFollow, message)
     }
 
     companion object{
@@ -126,7 +126,6 @@ class FragmentFollow : Fragment(), ShowStates{
             }
         }
 
-        const val followStateId = 2
         private const val TYPE = "type"
         private const val USERNAME = "username"
     }
