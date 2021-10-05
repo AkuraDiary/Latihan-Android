@@ -1,5 +1,5 @@
 # Latihan-Android
-Repository untuk latihan latihan android saya selama belajar di dicoding (Belajar Fundamental Aplikasi Android), yeyyy
+Repository untuk latihan latihan android saya selama belajar di dicoding Belajar Fundamental Aplikasi Android (BFAA), yeyyy
 
 # Submission BFAA
 - <a href="https://github.com/AkuraDiary/Latihan-Android/tree/main/Submission1BelajarFundamentalAplikasiAndroid">Submission 1</a> (sebelum 16 September) ⭐⭐⭐⭐
