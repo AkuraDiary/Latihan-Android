@@ -46,6 +46,11 @@ class SeatsView : View {
         for(seat in seats){
             drawSeat(canvas, seat)
         }
+        val text = "Silahkan Pilih Kursi"
+        titlePaint.apply {
+            textSize = 50F
+        }
+        canvas?.drawText(text, (width / 2F) - 197F, 100F, titlePaint)
     }
 
     private fun drawSeat(canvas: Canvas?, seat: Seat) {
