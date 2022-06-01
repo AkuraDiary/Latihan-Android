@@ -86,6 +86,17 @@ class SeatsView : View {
         val bottomSeatPath = Path()
         bottomSeatPath.addRect(0F, 0F, 200F, 25F, Path.Direction.CCW)
         canvas?.drawPath(bottomSeatPath, bottomSeatPaint)
+
+        //adding the chair number
+        canvas?.translate(0F, -175F)
+        numberSeatPaint.apply {
+            textSize = 50F
+            numberSeatPaint.getTextBounds(seat.name, 0, seat.name.length, mBounds)
+        }
+        canvas?.drawText(seat.name, 100F - mBounds.centerX(), 100F, numberSeatPaint)
+
+        //restore to previous setting
+        canvas?.restore()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
