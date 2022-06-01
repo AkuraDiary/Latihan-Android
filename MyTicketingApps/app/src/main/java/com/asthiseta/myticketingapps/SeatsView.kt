@@ -1,6 +1,9 @@
 package com.asthiseta.myticketingapps
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 
@@ -28,6 +31,24 @@ class SeatsView : View {
 
     )
 
+    var seat: Seat? = null
+    private val background = Paint()
+    private val armrestPaint = Paint()
+    private val bottomSeatPaint = Paint()
+    private val mBounds = Rect()
+    private val numberSeatPaint = Paint(Paint.FAKE_BOLD_TEXT_FLAG)
+    val titlePaint = Paint(Paint.FAKE_BOLD_TEXT_FLAG)
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        for(seat in seats){
+            drawSeat(canvas, seat)
+        }
+    }
+
+    private fun drawSeat(canvas: Canvas?, seat: Seat) {
+
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
