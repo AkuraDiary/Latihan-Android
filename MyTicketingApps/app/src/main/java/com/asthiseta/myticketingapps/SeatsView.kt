@@ -44,8 +44,13 @@ class SeatsView : View {
                     x = halfOfWidth - 300F
                     y = halfOfHeight + value
                 }
-                value += 300F
+            }else{
+                seats[i].apply {
+                    x = halfOfWidth+100F
+                    y = halfOfHeight + value
+                }
             }
+            value += 300F
         }
     }
 }
