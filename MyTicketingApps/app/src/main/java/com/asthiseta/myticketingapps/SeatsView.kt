@@ -72,6 +72,14 @@ class SeatsView : View {
         backgroundPath.addRect(0F, 0F, 200F, 200F, Path.Direction.CCW)
         backgroundPath.addCircle(100F, 50F, 75F, Path.Direction.CCW)
         canvas?.drawPath(backgroundPath, background)
+
+        //armrest kursi
+        val armrestPath = Path()
+        armrestPath.addRect(0F,0F, 20F, 200F, Path.Direction.CCW )
+        canvas?.drawPath(armrestPath, armrestPaint)
+        canvas?.translate(150F, 0F)
+        armrestPath.addRect(0F, 0F, 50F, 200F, Path.Direction.CCW)
+        canvas?.drawPath(armrestPath, armrestPaint)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
