@@ -3,9 +3,11 @@ package com.asthiseta.myticketingapps
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 
 class SeatsView : View {
     constructor(context : Context) : super(context)
@@ -47,7 +49,29 @@ class SeatsView : View {
     }
 
     private fun drawSeat(canvas: Canvas?, seat: Seat) {
+        //color if seat is booked
+        if(seat.isBooked){
+            background.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
+            armrestPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
+            bottomSeatPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
+            numberSeatPaint.color = ResourcesCompat.getColor(resources, R.color.black, null)
+        }else{
+            background.color = ResourcesCompat.getColor(resources, R.color.blue_500, null)
+            armrestPaint.color = ResourcesCompat.getColor(resources, R.color.blue_700, null)
+            bottomSeatPaint.color = ResourcesCompat.getColor(resources, R.color.blue_200, null)
+            numberSeatPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
+        }
 
+        //saving state
+        canvas?.save()
+
+        //background
+        canvas?.translate(seat.x as Float, seat.y as Float)
+
+        val backgroundPath = Path()
+        backgroundPath.addRect(0F, 0F, 200F, 200F, Path.Direction.CCW)
+        backgroundPath.addCircle(100F, 50F, 75F, Path.Direction.CCW)
+        canvas?.drawPath(backgroundPath, background)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
