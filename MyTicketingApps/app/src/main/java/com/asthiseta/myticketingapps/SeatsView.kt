@@ -75,7 +75,7 @@ class SeatsView : View {
 
         //armrest kursi
         val armrestPath = Path()
-        armrestPath.addRect(0F,0F, 20F, 200F, Path.Direction.CCW )
+        armrestPath.addRect(0F,0F, 50F, 200F, Path.Direction.CCW )
         canvas?.drawPath(armrestPath, armrestPaint)
         canvas?.translate(150F, 0F)
         armrestPath.addRect(0F, 0F, 50F, 200F, Path.Direction.CCW)
@@ -116,8 +116,8 @@ class SeatsView : View {
                 }
             }else{
                 seats[i].apply {
-                    x = halfOfWidth+100F
-                    y = halfOfHeight + value
+                    x = halfOfWidth + 100F
+                    y = halfOfHeight + value - 300F
                 }
             }
             value += 300F
